@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">WhoSings</string>
+
+    <string name="choose_name_description">Choose you user name</string>
+    <string name="username_hint">Username</string>
+    <string name="login_enter">Enter</string>
+
+</resources>
