@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightGray"
+    android:padding="12dp"
+    tools:context=".ui.fragment.HomeFragment">
+
+    <Button
+        android:id="@+id/logoutButton"
+        style="@style/TextAppearance.WhoSings.RoundButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="@string/logout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/readyTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="120dp"
+        android:text="@string/ready_for_quiz"
+        android:textAppearance="@style/TextAppearance.WhoSings.H2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/playButton"
+        style="@style/TextAppearance.WhoSings.RoundButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="@string/play"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/readyTextView" />
+
+    <View
+        android:id="@+id/userInfoContainer"
+        android:layout_width="0dp"
+        android:layout_height="250dp"
+        android:background="@color/purple_200"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/userAvatar"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        app:layout_constraintBottom_toTopOf="@id/userInfoContainer"
+        app:layout_constraintEnd_toEndOf="@id/userInfoContainer"
+        app:layout_constraintStart_toStartOf="@id/userInfoContainer"
+        app:layout_constraintTop_toTopOf="@id/userInfoContainer"
+        tools:background="@color/limeGreen" />
+
+    <TextView
+        android:id="@+id/nameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:textAppearance="@style/TextAppearance.WhoSings.Body2"
+        app:layout_constraintEnd_toEndOf="@id/userInfoContainer"
+        app:layout_constraintStart_toStartOf="@id/userInfoContainer"
+        app:layout_constraintTop_toBottomOf="@id/userAvatar"
+        tools:text="User Name" />
+
+    <TextView
+        android:id="@+id/bestScoreDescriptionTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="5dp"
+        android:text="@string/you_best_score"
+        android:textAppearance="@style/TextAppearance.WhoSings.Body2"
+        app:layout_constraintStart_toStartOf="@id/userInfoContainer"
+        app:layout_constraintTop_toBottomOf="@id/nameTextView" />
+
+    <TextView
+        android:id="@+id/bestScoreTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="5dp"
+        android:textAppearance="@style/TextAppearance.WhoSings.Body2"
+        app:layout_constraintEnd_toEndOf="@id/bestScoreDescriptionTextView"
+        app:layout_constraintStart_toStartOf="@id/bestScoreDescriptionTextView"
+        app:layout_constraintTop_toBottomOf="@id/bestScoreDescriptionTextView"
+        tools:text="15" />
+
+    <Button
+        android:id="@+id/recentScoresButton"
+        style="@style/TextAppearance.WhoSings.RoundButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="@string/recent_scores"
+        app:layout_constraintEnd_toEndOf="@id/bestScoreTextView"
+        app:layout_constraintStart_toStartOf="@id/bestScoreTextView"
+        app:layout_constraintTop_toBottomOf="@id/bestScoreTextView" />
+
+    <TextView
+        android:id="@+id/rankPositionDescriptionView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="15dp"
+        android:text="@string/you_best_score"
+        android:textAppearance="@style/TextAppearance.WhoSings.Body2"
+        app:layout_constraintEnd_toEndOf="@id/userInfoContainer"
+        app:layout_constraintTop_toBottomOf="@id/nameTextView" />
+
+    <TextView
+        android:id="@+id/rankTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="5dp"
+        android:textAppearance="@style/TextAppearance.WhoSings.Body2"
+        app:layout_constraintEnd_toEndOf="@id/rankPositionDescriptionView"
+        app:layout_constraintStart_toStartOf="@id/rankPositionDescriptionView"
+        app:layout_constraintTop_toBottomOf="@id/rankPositionDescriptionView"
+        tools:text="29" />
+
+    <Button
+        android:id="@+id/rankingButton"
+        style="@style/TextAppearance.WhoSings.RoundButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="@string/ranking"
+        app:layout_constraintEnd_toEndOf="@id/rankTextView"
+        app:layout_constraintStart_toStartOf="@id/rankTextView"
+        app:layout_constraintTop_toBottomOf="@id/rankTextView" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

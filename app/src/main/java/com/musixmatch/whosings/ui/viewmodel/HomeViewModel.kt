@@ -2,11 +2,10 @@ package com.musixmatch.whosings.ui.viewmodel
 
 import androidx.lifecycle.*
 import com.musixmatch.whosings.business.error.ErrorHandler
-import com.musixmatch.whosings.business.usecase.LoginUseCase
+import com.musixmatch.whosings.business.usecase.GetUserInfoUseCase
 import com.musixmatch.whosings.business.util.DefaultDispatcherProvider
 import com.musixmatch.whosings.business.util.DispatcherProvider
-import com.musixmatch.whosings.business.usecase.RegistrationUseCase
-import com.musixmatch.whosings.data.state.LoginState
+import com.musixmatch.whosings.data.state.HomeState
 import com.musixmatch.whosings.data.state.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -15,9 +14,8 @@ import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
-class LoginViewModel @Inject constructor(
-    private val registrationUseCase: RegistrationUseCase,
-    private val loginUseCase: LoginUseCase,
+class HomeViewModel @Inject constructor(
+    private val getUserInfoUseCase: GetUserInfoUseCase,
     private val errorHandler: ErrorHandler,
     private val dispatchers: DispatcherProvider = DefaultDispatcherProvider()
 ) : ViewModel() {
@@ -27,21 +25,13 @@ class LoginViewModel @Inject constructor(
     // The UI observes this LiveData to get its state updates.
     val uiState: LiveData<UiState> = _uiState
 
-    fun register(username: String?) = viewModelScope.launch(dispatchers.io()) {
+    fun retrieveUserInfo() = viewModelScope.launch(dispatchers.io()) {
+        emitState(UiState.Loading)
         try {
-            registrationUseCase.registerUser(username)
-            emitState(LoginState.LoggedIn)
-        } catch (exception: Exception) {
-            Timber.e(exception)
-            val uiError = errorHandler.handleError(exception)
-            emitState(UiState.Error(uiError))
-        }
-    }
-
-    fun login(username: String?) = viewModelScope.launch(dispatchers.io()) {
-        try {
-            loginUseCase.enrollUser(username)
-            emitState(LoginState.LoggedIn)
+            val userInfo = getUserInfoUseCase.getUser()
+            emitState(HomeState.GameNotStarted(
+                userInfo = userInfo
+            ))
         } catch (exception: Exception) {
             Timber.e(exception)
             val uiError = errorHandler.handleError(exception)

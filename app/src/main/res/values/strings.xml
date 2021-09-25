@@ -9,4 +9,15 @@
     <string name="sign_in_description">Already registered?</string>
     <string name="sign_up_description">You don\'t have an account yet?</string>
 
+    <!-- Home -->
+    <string name="logout">Logout</string>
+    <string name="ready_for_quiz">Ready for the next quiz?</string>
+    <string name="play">Play</string>
+    <string name="you_best_score">Your best score</string>
+    <string name="position">Position</string>
+    <string name="ranking">Ranking</string>
+    <string name="recent_scores">Recent scores</string>
+
+
+
 </resources>

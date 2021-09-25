@@ -8,7 +8,7 @@ import androidx.room.Query
 interface UserDao {
 
     @Query("SELECT * FROM user")
-    fun getAll(): List<UserEntity>
+    fun getAll(): List<UserEntity>?
 
     @Query("SELECT * FROM user WHERE userName IN (:userName)")
     fun getByName(userName: String): UserEntity?

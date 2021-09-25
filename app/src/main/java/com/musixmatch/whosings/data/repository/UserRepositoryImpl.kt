@@ -10,12 +10,16 @@ class UserRepositoryImpl @Inject constructor(
     private val userDao: UserDao
 ) : UserRepository {
 
-    override fun getRegisteredUsers(): List<UserEntity> {
+    override fun getRegisteredUsers(): List<UserEntity>? {
         return userDao.getAll()
     }
 
     override fun isUserRegistered(username: String): Boolean {
         return userDao.getByName(username) != null
+    }
+
+    override fun getUserByName(username: String): UserEntity? {
+        return userDao.getByName(username)
     }
 
     override fun registerUser(userName: String) {
@@ -31,5 +35,9 @@ class UserRepositoryImpl @Inject constructor(
 
     override fun enrollUser(userName: String) {
         preferencesManager.saveEnrolledUser(userName)
+    }
+
+    override fun getEnrolledUser(): String? {
+        return preferencesManager.getEnrolledUser()
     }
 }

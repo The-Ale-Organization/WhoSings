@@ -7,26 +7,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
-import com.musixmatch.whosings.R
-import com.musixmatch.whosings.data.state.LoginState
+import com.musixmatch.whosings.data.model.UserInfo
+import com.musixmatch.whosings.data.state.HomeState
 import com.musixmatch.whosings.data.state.UiState
-import com.musixmatch.whosings.databinding.FragmentLoginBinding
+import com.musixmatch.whosings.databinding.FragmentHomeBinding
 import com.musixmatch.whosings.ui.UiStateListener
-import com.musixmatch.whosings.ui.viewmodel.LoginViewModel
+import com.musixmatch.whosings.ui.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 import java.lang.RuntimeException
 
 
 @AndroidEntryPoint
-class LoginFragment : Fragment() {
+class HomeFragment : Fragment() {
 
-    private val viewModel: LoginViewModel by viewModels()
+    private val viewModel: HomeViewModel by viewModels()
 
     private var mUiStateListener: UiStateListener? = null
 
-    private var _binding: FragmentLoginBinding? = null
+    private var _binding: FragmentHomeBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -37,7 +36,7 @@ class LoginFragment : Fragment() {
         if (context is UiStateListener) {
             mUiStateListener = context
         } else {
-            throw RuntimeException("${context::class.java.simpleName} must implement ${UiStateListener::class.java.simpleName}")
+            throw RuntimeException("${context::javaClass.name} must implement ${UiStateListener::javaClass.name}")
         }
     }
 
@@ -45,7 +44,7 @@ class LoginFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentLoginBinding.inflate(inflater, container, false)
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -53,14 +52,22 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupObservers()
+        viewModel.retrieveUserInfo()
 
-        binding.signInButton.setOnClickListener {
-            viewModel.login(binding.userTextField.editText?.text.toString())
+        binding.playButton.setOnClickListener {
 
         }
 
-        binding.signUpButton.setOnClickListener {
-            viewModel.register(binding.userTextField.editText?.text.toString())
+        binding.logoutButton.setOnClickListener {
+
+        }
+
+        binding.recentScoresButton.setOnClickListener {
+
+        }
+
+        binding.rankingButton.setOnClickListener {
+
         }
     }
 
@@ -74,10 +81,15 @@ class LoginFragment : Fragment() {
         viewModel.uiState.observe(viewLifecycleOwner) {
             it?.let { uiState ->
                 when (uiState) {
-                    is LoginState.LoggedIn -> {
+                    is HomeState.GameNotStarted -> {
                         Timber.d("State SUCCESS")
                         hideProgressBar()
-                        findNavController().navigate(R.id.action_introFragment_to_homeFragment)
+                        setupUI(uiState.userInfo)
+                    }
+                    is HomeState.GameFinished -> {
+                        Timber.d("State SUCCESS")
+                        hideProgressBar()
+                        setupUI(uiState.userInfo)
                     }
                     is UiState.Error -> {
                         Timber.d("State ERROR")
@@ -91,6 +103,21 @@ class LoginFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun setupUI(userInfo: UserInfo) {
+        binding.nameTextView.text = userInfo.username
+        binding.bestScoreTextView.text = userInfo.bestScore?.toString() ?: "N.A."
+        binding.rankTextView.text =
+            if (userInfo.totalUsers != null && userInfo.totalUsers > 0) {
+                if (userInfo.bestScore != null && userInfo.rankingPosition != null && userInfo.rankingPosition > 0) {
+                    "${userInfo.rankingPosition} of ${userInfo.totalUsers}"
+                } else {
+                    "- of ${userInfo.totalUsers}"
+                }
+            } else {
+                "N.A."
+            }
     }
 
     private fun showProgressBar() {
@@ -109,6 +136,6 @@ class LoginFragment : Fragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance() = LoginFragment()
+        fun newInstance() = HomeFragment()
     }
 }
