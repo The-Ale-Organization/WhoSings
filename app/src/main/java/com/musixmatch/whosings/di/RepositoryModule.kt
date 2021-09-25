@@ -1,8 +1,9 @@
 package com.musixmatch.whosings.di
 
-import com.musixmatch.whosings.data.api.ApiHelper
-import com.musixmatch.whosings.data.repository.Repository
-import com.musixmatch.whosings.data.repository.RepositoryImpl
+import com.musixmatch.whosings.data.repository.UserRepository
+import com.musixmatch.whosings.data.repository.UserRepositoryImpl
+import com.musixmatch.whosings.data.storage.room.UserDao
+import com.musixmatch.whosings.data.storage.sharedpref.PreferencesManager
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -13,12 +14,12 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object RepositoryModule {
 
-
     @Singleton
     @Provides
-    fun provideRepository(apiHelper: ApiHelper): Repository {
-        return RepositoryImpl(
-            apiHelper = apiHelper
+    fun provideRepository(preferencesManager: PreferencesManager, userDao: UserDao): UserRepository {
+        return UserRepositoryImpl(
+            preferencesManager = preferencesManager,
+            userDao = userDao
         )
     }
 

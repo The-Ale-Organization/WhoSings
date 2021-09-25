@@ -1,8 +1,12 @@
 <resources>
     <string name="app_name">WhoSings</string>
 
-    <string name="choose_name_description">Choose you user name</string>
+    <!-- Login -->
+    <string name="choose_name_description">Insert your username</string>
     <string name="username_hint">Username</string>
-    <string name="login_enter">Enter</string>
+    <string name="sign_in">Sign In</string>
+    <string name="sign_up">Register</string>
+    <string name="sign_in_description">Already registered?</string>
+    <string name="sign_up_description">You don\'t have an account yet?</string>
 
 </resources>

@@ -9,7 +9,5 @@ sealed class UiState {
 }
 
 sealed class LoginState : UiState() {
-    data class Success(private val data: String): LoginState()
-    data class Error(val type: ErrorHandler.UIError): LoginState()
-    object Loading: LoginState()
+    object Success: LoginState()
 }

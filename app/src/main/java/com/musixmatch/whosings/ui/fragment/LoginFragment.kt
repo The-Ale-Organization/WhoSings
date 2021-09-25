@@ -1,5 +1,6 @@
 package com.musixmatch.whosings.ui.fragment
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -7,10 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.musixmatch.whosings.data.state.LoginState
+import com.musixmatch.whosings.data.state.UiState
 import com.musixmatch.whosings.databinding.FragmentLoginBinding
+import com.musixmatch.whosings.ui.UiStateListener
 import com.musixmatch.whosings.ui.viewmodel.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
+import java.lang.RuntimeException
 
 
 @AndroidEntryPoint
@@ -18,11 +22,22 @@ class LoginFragment : Fragment() {
 
     private val viewModel: LoginViewModel by viewModels()
 
+    private var mUiStateListener: UiStateListener? = null
+
     private var _binding: FragmentLoginBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is UiStateListener) {
+            mUiStateListener = context
+        } else {
+            throw RuntimeException("${context::javaClass.name} must implement ${UiStateListener::javaClass.name}")
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,7 +54,12 @@ class LoginFragment : Fragment() {
         setupUI()
         setupObservers()
 
-        binding.enterButton.setOnClickListener {
+        binding.signInButton.setOnClickListener {
+            viewModel.register(binding.userTextField.editText?.text.toString())
+
+        }
+
+        binding.signUpButton.setOnClickListener {
 
         }
     }
@@ -47,6 +67,7 @@ class LoginFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+        mUiStateListener = null
     }
 
     private fun setupViewModel() {
@@ -61,19 +82,34 @@ class LoginFragment : Fragment() {
                 when (uiState) {
                     is LoginState.Success -> {
                         Timber.d("State SUCCESS")
-                        // Show root view.
+                        hideProgressBar()
                     }
-                    is LoginState.Error -> {
+                    is UiState.Error -> {
                         Timber.d("State ERROR")
-                        // Show root view.
+                        hideProgressBar()
+
                     }
-                    is LoginState.Loading -> {
+                    is UiState.Loading -> {
                         Timber.d("State LOADING")
-                        // Hide root view.
+                        showProgressBar()
                     }
                 }
             }
         }
+    }
+
+    private fun showProgressBar() {
+        // Hide root view.
+        binding.root.visibility = View.GONE
+        // Show progress bar.
+        mUiStateListener?.showProgress()
+    }
+
+    private fun hideProgressBar() {
+        // Show root view.
+        binding.root.visibility = View.VISIBLE
+        // Hide progress bar
+        mUiStateListener?.hideProgress()
     }
 
     companion object {
