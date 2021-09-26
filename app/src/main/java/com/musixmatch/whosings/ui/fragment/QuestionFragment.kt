@@ -13,15 +13,16 @@ import com.musixmatch.whosings.data.state.UiState
 import com.musixmatch.whosings.databinding.FragmentHomeBinding
 import com.musixmatch.whosings.ui.UiStateListener
 import com.musixmatch.whosings.ui.viewmodel.HomeViewModel
+import com.musixmatch.whosings.ui.viewmodel.QuestionViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 import java.lang.RuntimeException
 
 
 @AndroidEntryPoint
-class HomeFragment : Fragment() {
+class QuestionFragment : Fragment() {
 
-    private val viewModel: HomeViewModel by viewModels()
+    private val viewModel: QuestionViewModel by viewModels()
 
     private var mUiStateListener: UiStateListener? = null
 
@@ -52,10 +53,8 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupObservers()
-        viewModel.retrieveUserInfo()
 
         binding.playButton.setOnClickListener {
-            viewModel.generateQuestions()
         }
 
         binding.logoutButton.setOnClickListener {
@@ -80,24 +79,24 @@ class HomeFragment : Fragment() {
     private fun setupObservers() {
         viewModel.uiState.observe(viewLifecycleOwner) {
             it?.let { uiState ->
-                Timber.d("State $uiState")
                 when (uiState) {
                     is HomeState.GameNotStarted -> {
+                        Timber.d("State SUCCESS")
                         hideProgressBar()
                         setupUI(uiState.userInfo)
                     }
-                    is HomeState.StartGame -> {
-                        Timber.d("Start game!!")
-                    }
                     is HomeState.GameFinished -> {
+                        Timber.d("State SUCCESS")
                         hideProgressBar()
                         setupUI(uiState.userInfo)
                     }
                     is UiState.Error -> {
+                        Timber.d("State ERROR")
                         hideProgressBar()
 
                     }
                     is UiState.Loading -> {
+                        Timber.d("State LOADING")
                         showProgressBar()
                     }
                 }
@@ -136,6 +135,6 @@ class HomeFragment : Fragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance() = HomeFragment()
+        fun newInstance() = QuestionFragment()
     }
 }

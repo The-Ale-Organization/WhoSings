@@ -18,6 +18,9 @@
     </style>
 
     <!-- Intermediate style to make further style extensions below easier to follow -->
+    <style name="TextAppearance.WhoSings.Body1" parent="TextAppearance.MaterialComponents.Body1" />
+
+    <!-- Intermediate style to make further style extensions below easier to follow -->
     <style name="TextAppearance.WhoSings.Body2" parent="TextAppearance.MaterialComponents.Body2" />
 
 </resources>

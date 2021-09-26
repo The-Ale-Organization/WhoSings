@@ -18,6 +18,11 @@
     <string name="ranking">Ranking</string>
     <string name="recent_scores">Recent scores</string>
 
+    <!-- Question -->
+    <string name="current_score">Score</string>
+
+
+
 
 
 </resources>
