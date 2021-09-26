@@ -20,6 +20,9 @@
 
     <!-- Question -->
     <string name="current_score">Score</string>
+    <string name="question">Who sings "%1$s"?</string>
+    <string name="question_counter">Question %1$s of %2$s</string>
+
 
 
 

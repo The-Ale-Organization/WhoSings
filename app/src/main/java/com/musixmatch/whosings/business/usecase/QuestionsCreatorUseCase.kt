@@ -47,8 +47,9 @@ class QuestionsCreatorUseCase @Inject constructor(
                         // Try picking a random artist from artistList.
                         // If the selected artist is not forbidden, this is the "wrong" artist we're looking for.
                         candidateWrongArtist = artistList.elementAt(
-                            (0..artistList.size).random()).artistName
+                            (artistList.indices).random()).artistName
                     }
+                    forbiddenArtists.add(candidateWrongArtist)
                     answersList.add(index, candidateWrongArtist)
                 }
             }

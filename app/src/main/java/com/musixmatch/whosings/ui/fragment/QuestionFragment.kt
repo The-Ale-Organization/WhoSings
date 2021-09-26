@@ -6,13 +6,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
-import com.musixmatch.whosings.data.model.UserInfo
-import com.musixmatch.whosings.data.state.HomeState
+import androidx.fragment.app.activityViewModels
+import com.musixmatch.whosings.R
+import com.musixmatch.whosings.data.model.Question
+import com.musixmatch.whosings.data.state.QuestionState
 import com.musixmatch.whosings.data.state.UiState
-import com.musixmatch.whosings.databinding.FragmentHomeBinding
+import com.musixmatch.whosings.databinding.FragmentQuestionBinding
 import com.musixmatch.whosings.ui.UiStateListener
-import com.musixmatch.whosings.ui.viewmodel.HomeViewModel
 import com.musixmatch.whosings.ui.viewmodel.QuestionViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
@@ -22,11 +22,11 @@ import java.lang.RuntimeException
 @AndroidEntryPoint
 class QuestionFragment : Fragment() {
 
-    private val viewModel: QuestionViewModel by viewModels()
+    private val questionViewModel: QuestionViewModel by activityViewModels()
 
     private var mUiStateListener: UiStateListener? = null
 
-    private var _binding: FragmentHomeBinding? = null
+    private var _binding: FragmentQuestionBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -45,28 +45,33 @@ class QuestionFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        _binding = FragmentQuestionBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        /*questionViewModel.uiState.value?.let {
+            when (it) {
+                is QuestionState.ShowQuestion -> {
+                    Timber.d("Show first question")
+
+
+                }
+            }
+        }*/
+
         setupObservers()
 
-        binding.playButton.setOnClickListener {
+        binding.optionOneButton.setOnClickListener {
+            questionViewModel.processAnswer(0)
         }
-
-        binding.logoutButton.setOnClickListener {
-
+        binding.optionTwoButton.setOnClickListener {
+            questionViewModel.processAnswer(1)
         }
-
-        binding.recentScoresButton.setOnClickListener {
-
-        }
-
-        binding.rankingButton.setOnClickListener {
-
+        binding.optionThreeButton.setOnClickListener {
+            questionViewModel.processAnswer(2)
         }
     }
 
@@ -77,26 +82,29 @@ class QuestionFragment : Fragment() {
     }
 
     private fun setupObservers() {
-        viewModel.uiState.observe(viewLifecycleOwner) {
+        questionViewModel.uiState.observe(viewLifecycleOwner) {
             it?.let { uiState ->
+                Timber.d("State $uiState")
                 when (uiState) {
-                    is HomeState.GameNotStarted -> {
-                        Timber.d("State SUCCESS")
+                    is QuestionState.ShowQuestion -> {
                         hideProgressBar()
-                        setupUI(uiState.userInfo)
+                        Timber.d("Show question ${uiState.questionIndex +1} of ${uiState.totalQuestions}")
+                        binding.scoreValueTextView.text = uiState.currentScore.toString()
+                        binding.questionCounterTextView.text = getString(
+                            R.string.question_counter,
+                            (uiState.questionIndex +1).toString(),
+                            uiState.totalQuestions.toString())
+
+                        showQuestion(uiState.question)
                     }
-                    is HomeState.GameFinished -> {
-                        Timber.d("State SUCCESS")
+                    is QuestionState.EndGame -> {
                         hideProgressBar()
-                        setupUI(uiState.userInfo)
+                        Timber.d("End of game")
                     }
                     is UiState.Error -> {
-                        Timber.d("State ERROR")
                         hideProgressBar()
-
                     }
                     is UiState.Loading -> {
-                        Timber.d("State LOADING")
                         showProgressBar()
                     }
                 }
@@ -104,19 +112,12 @@ class QuestionFragment : Fragment() {
         }
     }
 
-    private fun setupUI(userInfo: UserInfo) {
-        binding.nameTextView.text = userInfo.username
-        binding.bestScoreTextView.text = userInfo.bestScore?.toString() ?: "N.A."
-        binding.rankTextView.text =
-            if (userInfo.totalUsers != null && userInfo.totalUsers > 0) {
-                if (userInfo.bestScore != null && userInfo.rankingPosition != null && userInfo.rankingPosition > 0) {
-                    "${userInfo.rankingPosition} of ${userInfo.totalUsers}"
-                } else {
-                    "- of ${userInfo.totalUsers}"
-                }
-            } else {
-                "N.A."
-            }
+    private fun showQuestion(question: Question) {
+        hideProgressBar()
+        binding.questionTextView.text = getString(R.string.question, question.lyricsLine)
+        binding.optionOneButton.text = question.answers[0]
+        binding.optionTwoButton.text = question.answers[1]
+        binding.optionThreeButton.text = question.answers[2]
     }
 
     private fun showProgressBar() {

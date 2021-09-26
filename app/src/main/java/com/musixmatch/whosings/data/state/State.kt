@@ -22,8 +22,22 @@ sealed class HomeState : UiState() {
     data class GameFinished(
         val userInfo: UserInfo
     ) : HomeState()
+}
 
-    data class StartGame(
-        val questionList: List<Question>
-    ) : HomeState()
+sealed class QuestionState : UiState() {
+    data class ShowQuestion(
+        val question: Question,
+        val questionIndex: Int,
+        val totalQuestions: Int,
+        val currentScore: Int,
+        val previousAnswerType: AnswerType?
+    ) : QuestionState()
+
+    object EndGame : QuestionState()
+}
+
+enum class AnswerType {
+    Correct,
+    Wrong,
+    Timeout
 }

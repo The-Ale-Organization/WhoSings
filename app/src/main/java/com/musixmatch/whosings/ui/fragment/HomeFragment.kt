@@ -6,13 +6,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import com.musixmatch.whosings.R
 import com.musixmatch.whosings.data.model.UserInfo
 import com.musixmatch.whosings.data.state.HomeState
+import com.musixmatch.whosings.data.state.QuestionState
 import com.musixmatch.whosings.data.state.UiState
 import com.musixmatch.whosings.databinding.FragmentHomeBinding
 import com.musixmatch.whosings.ui.UiStateListener
 import com.musixmatch.whosings.ui.viewmodel.HomeViewModel
+import com.musixmatch.whosings.ui.viewmodel.QuestionViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 import java.lang.RuntimeException
@@ -21,7 +26,8 @@ import java.lang.RuntimeException
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
 
-    private val viewModel: HomeViewModel by viewModels()
+    private val homeViewModel: HomeViewModel by viewModels()
+    private val questionViewModel: QuestionViewModel by activityViewModels()
 
     private var mUiStateListener: UiStateListener? = null
 
@@ -52,10 +58,10 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupObservers()
-        viewModel.retrieveUserInfo()
+        homeViewModel.retrieveUserInfo()
 
         binding.playButton.setOnClickListener {
-            viewModel.generateQuestions()
+            questionViewModel.generateQuestions()
         }
 
         binding.logoutButton.setOnClickListener {
@@ -78,16 +84,13 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupObservers() {
-        viewModel.uiState.observe(viewLifecycleOwner) {
+        homeViewModel.uiState.observe(viewLifecycleOwner) {
             it?.let { uiState ->
                 Timber.d("State $uiState")
                 when (uiState) {
                     is HomeState.GameNotStarted -> {
                         hideProgressBar()
                         setupUI(uiState.userInfo)
-                    }
-                    is HomeState.StartGame -> {
-                        Timber.d("Start game!!")
                     }
                     is HomeState.GameFinished -> {
                         hideProgressBar()
@@ -96,6 +99,24 @@ class HomeFragment : Fragment() {
                     is UiState.Error -> {
                         hideProgressBar()
 
+                    }
+                    is UiState.Loading -> {
+                        showProgressBar()
+                    }
+                }
+            }
+        }
+        questionViewModel.uiState.observe(viewLifecycleOwner) {
+            it?.let { uiState ->
+                Timber.d("State $uiState")
+                when (uiState) {
+                    is QuestionState.ShowQuestion -> {
+                        hideProgressBar()
+                        Timber.d("Start game!!")
+                        findNavController().navigate(R.id.action_homeFragment_to_questionFragment)
+                    }
+                    is UiState.Error -> {
+                        hideProgressBar()
                     }
                     is UiState.Loading -> {
                         showProgressBar()

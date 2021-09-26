@@ -22,6 +22,16 @@
         android:label="HomeFragment"
         tools:layout="@layout/fragment_home"
         >
+        <action
+            android:id="@+id/action_homeFragment_to_questionFragment"
+            app:destination="@id/questionFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/questionFragment"
+        android:name="com.musixmatch.whosings.ui.fragment.QuestionFragment"
+        android:label="QuestionFragment"
+        tools:layout="@layout/fragment_question"
+        />
 
 </navigation>
