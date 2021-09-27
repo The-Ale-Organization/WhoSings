@@ -10,26 +10,26 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.musixmatch.whosings.R
-import com.musixmatch.whosings.data.model.UserScoreItem
-import com.musixmatch.whosings.data.state.RankingState
+import com.musixmatch.whosings.data.model.RecentGameItem
 import com.musixmatch.whosings.data.state.UiState
-import com.musixmatch.whosings.databinding.FragmentHighScoresBinding
+import com.musixmatch.whosings.data.state.UserHistoryState
+import com.musixmatch.whosings.databinding.FragmentUserHistoryBinding
 import com.musixmatch.whosings.ui.UiStateListener
-import com.musixmatch.whosings.ui.adapter.HighScoresAdapter
-import com.musixmatch.whosings.ui.viewmodel.HighScoresViewModel
+import com.musixmatch.whosings.ui.adapter.UserHistoryAdapter
+import com.musixmatch.whosings.ui.viewmodel.UserHistoryViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 import java.lang.RuntimeException
 
 
 @AndroidEntryPoint
-class HighScoresFragment : Fragment() {
+class UserHistoryFragment : Fragment() {
 
-    private val highScoresViewModel: HighScoresViewModel by viewModels()
+    private val rankingViewModel: UserHistoryViewModel by viewModels()
 
     private var mUiStateListener: UiStateListener? = null
 
-    private var _binding: FragmentHighScoresBinding? = null
+    private var _binding: FragmentUserHistoryBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -48,7 +48,7 @@ class HighScoresFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentHighScoresBinding.inflate(inflater, container, false)
+        _binding = FragmentUserHistoryBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -57,11 +57,11 @@ class HighScoresFragment : Fragment() {
 
         setupObservers()
 
-        highScoresViewModel.getRanking()
+        rankingViewModel.getRecentGamesScores()
 
         binding.backButton.setOnClickListener {
             // Go back to home.
-            findNavController().navigate(R.id.action_rankingFragment_pop)
+            findNavController().navigate(R.id.action_userHistoryFragment_pop)
         }
     }
 
@@ -72,11 +72,11 @@ class HighScoresFragment : Fragment() {
     }
 
     private fun setupObservers() {
-        highScoresViewModel.uiState.observe(viewLifecycleOwner) {
+        rankingViewModel.uiState.observe(viewLifecycleOwner) {
             it?.let { uiState ->
                 Timber.d("State $uiState")
                 when (uiState) {
-                    is RankingState.RankAvailable -> {
+                    is UserHistoryState.RecentGamesAvailable -> {
                         hideProgressBar()
                         showList(uiState.items)
                     }
@@ -91,10 +91,10 @@ class HighScoresFragment : Fragment() {
         }
     }
 
-    private fun showList(items: List<UserScoreItem>) {
+    private fun showList(items: List<RecentGameItem>) {
         val layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.layoutManager = layoutManager
-        val adapter = HighScoresAdapter(items)
+        val adapter = UserHistoryAdapter(items)
         binding.recyclerView.adapter = adapter
         adapter.notifyDataSetChanged()
     }
@@ -115,6 +115,6 @@ class HighScoresFragment : Fragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance() = HighScoresFragment()
+        fun newInstance() = UserHistoryFragment()
     }
 }
