@@ -1,14 +1,17 @@
 package com.musixmatch.whosings.business.usecase
 
+import com.musixmatch.whosings.data.repository.MusicRepository
 import com.musixmatch.whosings.data.repository.UserRepository
 import java.util.*
 import javax.inject.Inject
 
 class UpdateGameDataUseCase @Inject constructor(
-    private val userRepository: UserRepository
+    private val userRepository: UserRepository,
+    private val musicRepository: MusicRepository
 ) {
 
-    fun saveScore(score: Int) {
+    fun updateData(score: Int) {
+        // Add the noew score to db.
         val userName = userRepository.getEnrolledUserName()
         userName?.let {
             val cal = Calendar.getInstance(TimeZone.getTimeZone("Europe/Paris"))
@@ -24,6 +27,8 @@ class UpdateGameDataUseCase @Inject constructor(
                 year = year.toString()
             )
         }
+        // Clear songs: at each new game a new set of songs is used.
+        musicRepository.clearSongs()
     }
 
 }

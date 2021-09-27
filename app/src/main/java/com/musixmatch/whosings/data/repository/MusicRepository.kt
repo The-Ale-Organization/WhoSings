@@ -15,6 +15,8 @@ interface MusicRepository {
 
     suspend fun fetchTopArtists(): List<Artist>
 
+    fun clearSongs()
+
     fun clearSessionData()
 
 }

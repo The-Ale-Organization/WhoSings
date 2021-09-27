@@ -81,7 +81,8 @@ class HomeFragment : Fragment() {
         }
 
         binding.rankingButton.setOnClickListener {
-
+            // Go to ranking page.
+            findNavController().navigate(R.id.action_homeFragment_to_rankingFragment)
         }
     }
 
@@ -101,7 +102,8 @@ class HomeFragment : Fragment() {
                         showUserInfo(uiState.userInfo, uiState.currentScore)
                     }
                     is HomeState.Logout -> {
-                        //TODO
+                        // Go back to login page.
+                        findNavController().navigate(R.id.action_homeFragment_to_introFragment)
                     }
                     is UiState.Error -> {
                         hideProgressBar()

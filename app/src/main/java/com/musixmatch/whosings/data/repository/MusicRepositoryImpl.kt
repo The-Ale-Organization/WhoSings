@@ -43,6 +43,10 @@ class MusicRepositoryImpl @Inject constructor(
         return response.artistList.map { it .artist }
     }
 
+    override fun clearSongs() {
+        volatileMemoryManager.clearSongs()
+    }
+
     override fun clearSessionData() {
         volatileMemoryManager.clear()
     }

@@ -112,10 +112,11 @@ class QuestionViewModel @Inject constructor(
         } else {
             // No more questions to show. Finish game.
             val finalScore = score
+            currentQuestionIndex = 0
             score = 0
             questionList = listOf()
             // Update game history data.
-            updateGameDataUseCase.saveScore(finalScore)
+            updateGameDataUseCase.updateData(finalScore)
             emitState(QuestionState.GameFinished(finalScore))
         }
     }

@@ -36,6 +36,12 @@ sealed class QuestionState : UiState() {
     ) : QuestionState()
 }
 
+sealed class RankingState : UiState() {
+    data class RankAvailable(
+        val questionIndex: Int,
+    ) : RankingState()
+}
+
 enum class AnswerType {
     Correct,
     Wrong,

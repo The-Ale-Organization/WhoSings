@@ -25,6 +25,12 @@
         <action
             android:id="@+id/action_homeFragment_to_questionFragment"
             app:destination="@id/questionFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_introFragment"
+            app:destination="@id/introFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_rankingFragment"
+            app:destination="@id/rankingFragment" />
     </fragment>
 
     <fragment
@@ -35,6 +41,17 @@
         >
         <action
             android:id="@+id/action_questionFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/rankingFragment"
+        android:name="com.musixmatch.whosings.ui.fragment.RankingFragment"
+        android:label="RankingFragment"
+        tools:layout="@layout/fragment_ranking"
+        >
+        <action
+            android:id="@+id/action_rankingFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
     </fragment>
 

@@ -23,6 +23,12 @@
     <string name="question">Who sings "%1$s"?</string>
     <string name="question_counter">Question %1$s of %2$s</string>
 
+    <!-- Ranking -->
+    <string name="best_player_title">Best players of all times</string>
+    <string name="back">Back</string>
+
+
+
 
 
 

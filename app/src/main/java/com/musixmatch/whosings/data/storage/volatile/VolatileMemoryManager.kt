@@ -33,8 +33,12 @@ class VolatileMemoryManager @Inject constructor() {
         }
     }
 
-    fun clear() {
+    fun clearSongs() {
         songList.clear()
+    }
+
+    fun clear() {
+        clearSongs()
     }
 
 }
