@@ -73,7 +73,7 @@ class HomeFragment : Fragment() {
         }
 
         binding.logoutButton.setOnClickListener {
-
+            homeViewModel.logout()
         }
 
         binding.recentScoresButton.setOnClickListener {
@@ -99,6 +99,9 @@ class HomeFragment : Fragment() {
                     is HomeState.UserInfoAvailable -> {
                         hideProgressBar()
                         showUserInfo(uiState.userInfo, uiState.currentScore)
+                    }
+                    is HomeState.Logout -> {
+                        //TODO
                     }
                     is UiState.Error -> {
                         hideProgressBar()

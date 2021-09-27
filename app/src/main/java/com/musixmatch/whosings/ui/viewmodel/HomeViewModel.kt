@@ -2,6 +2,7 @@ package com.musixmatch.whosings.ui.viewmodel
 
 import androidx.lifecycle.*
 import com.musixmatch.whosings.business.error.ErrorHandler
+import com.musixmatch.whosings.business.usecase.ClearSessionUseCase
 import com.musixmatch.whosings.business.usecase.GetUserInfoUseCase
 import com.musixmatch.whosings.business.util.DefaultDispatcherProvider
 import com.musixmatch.whosings.business.util.DispatcherProvider
@@ -16,6 +17,7 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val getUserInfoUseCase: GetUserInfoUseCase,
+    private val clearSessionUseCase: ClearSessionUseCase,
     private val errorHandler: ErrorHandler,
     private val dispatchers: DispatcherProvider = DefaultDispatcherProvider()
 ) : ViewModel() {
@@ -41,6 +43,11 @@ class HomeViewModel @Inject constructor(
             val uiError = errorHandler.handleError(exception)
             emitState(UiState.Error(uiError))
         }
+    }
+
+    fun logout() = viewModelScope.launch(dispatchers.io()) {
+        clearSessionUseCase.clearSessionData()
+        emitState(HomeState.Logout)
     }
 
     private suspend fun emitState(state: UiState) =

@@ -19,6 +19,7 @@ sealed class HomeState : UiState() {
         val userInfo: UserInfo,
         val currentScore: Int?
     ) : HomeState()
+    object Logout: HomeState()
 }
 
 sealed class QuestionState : UiState() {

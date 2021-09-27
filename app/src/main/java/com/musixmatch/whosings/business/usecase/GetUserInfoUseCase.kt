@@ -10,7 +10,7 @@ class GetUserInfoUseCase @Inject constructor(
 ) {
 
     fun getUser(): UserInfo {
-        val enrolledUserName = userRepository.getEnrolledUser()
+        val enrolledUserName = userRepository.getEnrolledUserName()
         enrolledUserName?.let {
             val userEntity = userRepository.getUserByName(it)
             userEntity?.let { user ->

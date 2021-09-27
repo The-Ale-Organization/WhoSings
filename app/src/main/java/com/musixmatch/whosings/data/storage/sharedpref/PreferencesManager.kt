@@ -20,6 +20,10 @@ class PreferencesManager @Inject constructor(@ApplicationContext private val con
         prefs.edit().putString(USERNAME, username).apply()
     }
 
+    fun clear() {
+        prefs.edit().putString(USERNAME, null).apply()
+    }
+
     companion object {
         const val WHO_SINGS_PREFS = "WHO_SINGS_PREFS"
     }

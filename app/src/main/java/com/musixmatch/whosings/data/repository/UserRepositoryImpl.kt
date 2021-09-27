@@ -1,9 +1,11 @@
 package com.musixmatch.whosings.data.repository
 
+import com.musixmatch.whosings.data.storage.room.ScoreEntity
 import com.musixmatch.whosings.data.storage.room.UserDao
 import com.musixmatch.whosings.data.storage.room.UserEntity
 import com.musixmatch.whosings.data.storage.sharedpref.PreferencesManager
 import javax.inject.Inject
+import kotlin.math.max
 
 class UserRepositoryImpl @Inject constructor(
     private val preferencesManager: PreferencesManager,
@@ -27,7 +29,7 @@ class UserRepositoryImpl @Inject constructor(
             UserEntity(
                 username = userName,
                 avatarUrl = null,
-                scores = listOf(),
+                scores = mutableListOf(),
                 bestScore = null
             )
         )
@@ -37,7 +39,32 @@ class UserRepositoryImpl @Inject constructor(
         preferencesManager.saveEnrolledUser(userName)
     }
 
-    override fun getEnrolledUser(): String? {
+    override fun getEnrolledUserName(): String? {
         return preferencesManager.getEnrolledUser()
+    }
+
+    override fun updateUser(userName: String, score: Int, day: String, month: String, year: String) {
+        getUserByName(userName)?.let { user ->
+            // Calculate new best score.
+            val bestScore = max(score, user.scores?.map { it.score }?.maxOrNull() ?: 0)
+            // Add the new score to the list.
+            val updatedScores: MutableList<ScoreEntity> = user.scores?.toMutableList() ?: mutableListOf()
+            updatedScores.add(ScoreEntity(
+                score = 0,
+                day = day,
+                month = month,
+                year = year
+            ))
+            val updatedUser = user.copy(
+                username = user.username,
+                avatarUrl = user.avatarUrl,
+                scores = updatedScores,
+                bestScore = bestScore
+            )
+            // Update user in db.
+            userDao.insert(
+                user = updatedUser
+            )
+        }
     }
 }

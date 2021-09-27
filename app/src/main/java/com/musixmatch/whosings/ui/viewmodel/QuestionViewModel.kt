@@ -4,6 +4,7 @@ import androidx.lifecycle.*
 import com.musixmatch.whosings.business.error.ErrorHandler
 import com.musixmatch.whosings.business.usecase.GetSongsUseCase
 import com.musixmatch.whosings.business.usecase.QuestionsCreatorUseCase
+import com.musixmatch.whosings.business.usecase.UpdateGameDataUseCase
 import com.musixmatch.whosings.business.util.DefaultDispatcherProvider
 import com.musixmatch.whosings.business.util.DispatcherProvider
 import com.musixmatch.whosings.data.model.Question
@@ -26,17 +27,19 @@ import javax.inject.Inject
 class QuestionViewModel @Inject constructor(
     private val getSongsUseCase: GetSongsUseCase,
     private val questionsCreatorUseCase: QuestionsCreatorUseCase,
+    private val updateGameDataUseCase: UpdateGameDataUseCase,
     private val errorHandler: ErrorHandler,
     private val dispatchers: DispatcherProvider = DefaultDispatcherProvider()
 ) : ViewModel() {
 
     // Backing property to avoid state updates from other classes.
     private val _uiState: MutableLiveData<UiState> = MutableLiveData()
+
     // The UI observes this LiveData to get its state updates.
     val uiState: LiveData<UiState> = _uiState
 
-    var questionList = listOf<Question>()
-    var currentQuestionIndex = 0
+    private var questionList = listOf<Question>()
+    private var currentQuestionIndex = 0
 
     // Current score.
     private var score = 0
@@ -92,19 +95,26 @@ class QuestionViewModel @Inject constructor(
             }
         }
 
-        if (currentQuestionIndex < questionList.size -1) {
+        if (currentQuestionIndex < questionList.size - 1) {
             // Show the next question.
             currentQuestionIndex++
-            emitState(QuestionState.ShowQuestion(
-                question = questionList[currentQuestionIndex],
-                questionIndex = currentQuestionIndex,
-                totalQuestions = questionList.size,
-                currentScore = score,
-                previousAnswerType = answerType
-            ))
+            emitState(
+                QuestionState.ShowQuestion(
+                    question = questionList[currentQuestionIndex],
+                    questionIndex = currentQuestionIndex,
+                    totalQuestions = questionList.size,
+                    currentScore = score,
+                    previousAnswerType = answerType
+                )
+            )
         } else {
             // No more questions to show. Finish game.
-            emitState(QuestionState.GameFinished(score))
+            val finalScore = score
+            score = 0
+            questionList = listOf()
+            // Update game history data.
+            updateGameDataUseCase.saveScore(finalScore)
+            emitState(QuestionState.GameFinished(finalScore))
         }
     }
 
