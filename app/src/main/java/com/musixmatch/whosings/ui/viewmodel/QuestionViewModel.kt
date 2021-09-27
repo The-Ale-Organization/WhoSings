@@ -13,6 +13,7 @@ import com.musixmatch.whosings.data.state.QuestionState
 import com.musixmatch.whosings.data.state.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.supervisorScope
 import kotlinx.coroutines.withContext
 import timber.log.Timber
 import javax.inject.Inject
@@ -47,30 +48,31 @@ class QuestionViewModel @Inject constructor(
     fun generateQuestions() = viewModelScope.launch(dispatchers.io()) {
         emitState(UiState.Loading)
         try {
-            val songs = getSongsUseCase.getSongs(
-                scope = this
-            )
-            songs.forEach {
-                Timber.d("${it.title} - lyrics: ${it.lyrics?.take(10)}")
-            }
-
-            questionList = questionsCreatorUseCase.createQuestions()
-            questionList.forEach {
-                Timber.d("Question: Who sings '${it.lyricsLine}'?")
-                Timber.d("Answer 1 (${it.correctAnswerIndex == 0}): ${it.answers[0]}")
-                Timber.d("Answer 2 (${it.correctAnswerIndex == 1}): ${it.answers[1]}")
-                Timber.d("Answer 3 (${it.correctAnswerIndex == 2}): ${it.answers[2]}")
-            }
-
-            emitState(
-                QuestionState.ShowQuestion(
-                    question = questionList[currentQuestionIndex],
-                    questionIndex = currentQuestionIndex,
-                    totalQuestions = questionList.size,
-                    currentScore = score,
-                    previousAnswerType = null
+            supervisorScope {
+                val songs = getSongsUseCase.getSongs(
+                    scope = this
                 )
-            )
+                songs.forEach {
+                    Timber.d("${it.title} - lyrics: ${it.lyrics?.take(10)}")
+                }
+                questionList = questionsCreatorUseCase.createQuestions()
+                questionList.forEach {
+                    Timber.d("Question: Who sings '${it.lyricsLine}'?")
+                    Timber.d("Answer 1 (${it.correctAnswerIndex == 0}): ${it.answers[0]}")
+                    Timber.d("Answer 2 (${it.correctAnswerIndex == 1}): ${it.answers[1]}")
+                    Timber.d("Answer 3 (${it.correctAnswerIndex == 2}): ${it.answers[2]}")
+                }
+
+                emitState(
+                    QuestionState.ShowQuestion(
+                        question = questionList[currentQuestionIndex],
+                        questionIndex = currentQuestionIndex,
+                        totalQuestions = questionList.size,
+                        currentScore = score,
+                        previousAnswerType = null
+                    )
+                )
+            }
         } catch (exception: Exception) {
             Timber.e(exception)
             val uiError = errorHandler.handleError(exception)
