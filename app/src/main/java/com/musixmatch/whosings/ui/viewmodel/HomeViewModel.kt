@@ -25,12 +25,16 @@ class HomeViewModel @Inject constructor(
     // The UI observes this LiveData to get its state updates.
     val uiState: LiveData<UiState> = _uiState
 
-    fun retrieveUserInfo() = viewModelScope.launch(dispatchers.io()) {
+    /**
+     * @param currentScore score of the game that just finished. Null if we haven't just finished a game.
+     */
+    fun retrieveUserInfo(currentScore: Int? = null) = viewModelScope.launch(dispatchers.io()) {
         emitState(UiState.Loading)
         try {
             val userInfo = getUserInfoUseCase.getUser()
-            emitState(HomeState.GameNotStarted(
-                userInfo = userInfo
+            emitState(HomeState.UserInfoAvailable(
+                userInfo = userInfo,
+                currentScore = currentScore
             ))
         } catch (exception: Exception) {
             Timber.e(exception)

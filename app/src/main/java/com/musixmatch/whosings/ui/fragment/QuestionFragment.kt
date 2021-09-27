@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.musixmatch.whosings.R
 import com.musixmatch.whosings.data.model.Question
 import com.musixmatch.whosings.data.state.QuestionState
@@ -52,16 +53,6 @@ class QuestionFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        /*questionViewModel.uiState.value?.let {
-            when (it) {
-                is QuestionState.ShowQuestion -> {
-                    Timber.d("Show first question")
-
-
-                }
-            }
-        }*/
-
         setupObservers()
 
         binding.optionOneButton.setOnClickListener {
@@ -97,9 +88,10 @@ class QuestionFragment : Fragment() {
 
                         showQuestion(uiState.question)
                     }
-                    is QuestionState.EndGame -> {
+                    is QuestionState.GameFinished -> {
                         hideProgressBar()
                         Timber.d("End of game")
+                        findNavController().navigate(R.id.action_questionFragment_to_homeFragment)
                     }
                     is UiState.Error -> {
                         hideProgressBar()

@@ -58,7 +58,15 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupObservers()
-        homeViewModel.retrieveUserInfo()
+
+        val initialState = questionViewModel.uiState.value
+        if (initialState is QuestionState.GameFinished) {
+            // We went back to home screen after finishing a game.
+            homeViewModel.retrieveUserInfo(initialState.score)
+        } else {
+            // We haven't started a game yet.
+            homeViewModel.retrieveUserInfo()
+        }
 
         binding.playButton.setOnClickListener {
             questionViewModel.generateQuestions()
@@ -88,13 +96,9 @@ class HomeFragment : Fragment() {
             it?.let { uiState ->
                 Timber.d("State $uiState")
                 when (uiState) {
-                    is HomeState.GameNotStarted -> {
+                    is HomeState.UserInfoAvailable -> {
                         hideProgressBar()
-                        setupUI(uiState.userInfo)
-                    }
-                    is HomeState.GameFinished -> {
-                        hideProgressBar()
-                        setupUI(uiState.userInfo)
+                        showUserInfo(uiState.userInfo, uiState.currentScore)
                     }
                     is UiState.Error -> {
                         hideProgressBar()
@@ -126,7 +130,18 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun setupUI(userInfo: UserInfo) {
+    private fun showUserInfo(userInfo: UserInfo, currentScore: Int? = null) {
+        if (currentScore != null) {
+            // Show current score.
+            binding.scoreDescriptionTextView.visibility = View.VISIBLE
+            binding.scoreValueTextView.visibility = View.VISIBLE
+            binding.scoreValueTextView.text = currentScore.toString()
+        } else {
+            // Hide current score labels.
+            binding.scoreDescriptionTextView.visibility = View.INVISIBLE
+            binding.scoreValueTextView.visibility = View.INVISIBLE
+        }
+
         binding.nameTextView.text = userInfo.username
         binding.bestScoreTextView.text = userInfo.bestScore?.toString() ?: "N.A."
         binding.rankTextView.text =

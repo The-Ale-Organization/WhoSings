@@ -104,7 +104,7 @@ class QuestionViewModel @Inject constructor(
             ))
         } else {
             // No more questions to show. Finish game.
-            emitState(QuestionState.EndGame)
+            emitState(QuestionState.GameFinished(score))
         }
     }
 

@@ -15,12 +15,9 @@ sealed class LoginState : UiState() {
 }
 
 sealed class HomeState : UiState() {
-    data class GameNotStarted(
-        val userInfo: UserInfo
-    ) : HomeState()
-
-    data class GameFinished(
-        val userInfo: UserInfo
+    data class UserInfoAvailable(
+        val userInfo: UserInfo,
+        val currentScore: Int?
     ) : HomeState()
 }
 
@@ -33,7 +30,9 @@ sealed class QuestionState : UiState() {
         val previousAnswerType: AnswerType?
     ) : QuestionState()
 
-    object EndGame : QuestionState()
+    data class GameFinished(
+        val score: Int
+    ) : QuestionState()
 }
 
 enum class AnswerType {

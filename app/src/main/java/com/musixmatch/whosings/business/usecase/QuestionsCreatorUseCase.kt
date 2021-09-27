@@ -17,9 +17,10 @@ class QuestionsCreatorUseCase @Inject constructor(
         val artistList = musicRepository.fetchTopArtists()
 
         val songList = musicRepository.getSongsWithLyrics()
-        val correctAnswerIndex = (0..POSSIBLE_ANSWERS).random()
 
         return songList.map { song ->
+            // Randomly choose the correct answer index.
+            val correctAnswerIndex = (0..POSSIBLE_ANSWERS).random()
             // Get first line of the lyrics.
             val firstLyricsLine = song.lyrics?.split("\n")?.first() ?: ""
 
