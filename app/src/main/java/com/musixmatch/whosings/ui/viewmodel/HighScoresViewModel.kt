@@ -15,7 +15,7 @@ import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
-class RankingViewModel @Inject constructor(
+class HighScoresViewModel @Inject constructor(
     private val getRankingUseCase: GetRankingUseCase,
     private val errorHandler: ErrorHandler,
     private val dispatchers: DispatcherProvider = DefaultDispatcherProvider()

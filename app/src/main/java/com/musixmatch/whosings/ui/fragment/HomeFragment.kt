@@ -77,6 +77,8 @@ class HomeFragment : Fragment() {
         }
 
         binding.recentScoresButton.setOnClickListener {
+            // Go to user history page.
+            findNavController().navigate(R.id.action_homeFragment_to_userHistoryFragment)
 
         }
 

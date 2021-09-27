@@ -2,6 +2,7 @@ package com.musixmatch.whosings.data.state
 
 import com.musixmatch.whosings.business.error.ErrorHandler
 import com.musixmatch.whosings.data.model.Question
+import com.musixmatch.whosings.data.model.UserGameItem
 import com.musixmatch.whosings.data.model.UserInfo
 import com.musixmatch.whosings.data.model.UserScoreItem
 
@@ -41,6 +42,12 @@ sealed class RankingState : UiState() {
     data class RankAvailable(
         val items: List<UserScoreItem>
     ) : RankingState()
+}
+
+sealed class UserHistoryState : UiState() {
+    data class RecentGamesAvailable(
+        val items: List<UserGameItem>
+    ) : UserHistoryState()
 }
 
 enum class AnswerType {
