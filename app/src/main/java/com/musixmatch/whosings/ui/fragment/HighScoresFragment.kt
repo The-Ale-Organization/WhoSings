@@ -8,11 +8,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.musixmatch.whosings.R
+import com.musixmatch.whosings.data.model.UserScoreItem
 import com.musixmatch.whosings.data.state.RankingState
 import com.musixmatch.whosings.data.state.UiState
-import com.musixmatch.whosings.databinding.FragmentRankingBinding
+import com.musixmatch.whosings.databinding.FragmentHighScoresBinding
 import com.musixmatch.whosings.ui.UiStateListener
+import com.musixmatch.whosings.ui.adapter.HighScoresAdapter
 import com.musixmatch.whosings.ui.viewmodel.RankingViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
@@ -20,13 +23,13 @@ import java.lang.RuntimeException
 
 
 @AndroidEntryPoint
-class RankingFragment : Fragment() {
+class HighScoresFragment : Fragment() {
 
     private val rankingViewModel: RankingViewModel by viewModels()
 
     private var mUiStateListener: UiStateListener? = null
 
-    private var _binding: FragmentRankingBinding? = null
+    private var _binding: FragmentHighScoresBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -45,7 +48,7 @@ class RankingFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentRankingBinding.inflate(inflater, container, false)
+        _binding = FragmentHighScoresBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -53,6 +56,8 @@ class RankingFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupObservers()
+
+        rankingViewModel.getRanking()
 
         binding.backButton.setOnClickListener {
             // Go back to home.
@@ -73,11 +78,10 @@ class RankingFragment : Fragment() {
                 when (uiState) {
                     is RankingState.RankAvailable -> {
                         hideProgressBar()
-                        //TODO
+                        showList(uiState.items)
                     }
                     is UiState.Error -> {
                         hideProgressBar()
-
                     }
                     is UiState.Loading -> {
                         showProgressBar()
@@ -85,6 +89,14 @@ class RankingFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun showList(items: List<UserScoreItem>) {
+        val layoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerView.layoutManager = layoutManager
+        val adapter = HighScoresAdapter(items)
+        binding.recyclerView.adapter = adapter
+        adapter.notifyDataSetChanged()
     }
 
     private fun showProgressBar() {
@@ -103,6 +115,6 @@ class RankingFragment : Fragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance() = RankingFragment()
+        fun newInstance() = HighScoresFragment()
     }
 }

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout android:id="@+id/container"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:padding="20dp"
+    android:id="@+id/container"
     android:layout_width="match_parent"
-    android:layout_height="100dp">
+    android:layout_height="100dp"
+    android:padding="20dp">
 
     <ImageView
         android:id="@+id/imageViewAvatar"
@@ -21,33 +21,27 @@
         android:id="@+id/usernameTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        tools:text="Name Surnameeeeeeeeeeeeeee Aaa"
-        android:maxLines="2"
-        android:ellipsize="end"
-        android:textAppearance="@style/TextAppearance.WhoSings.H2"
-        android:visibility="invisible"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        app:layout_constraintStart_toEndOf="@id/imageViewAvatar"
-        app:layout_constraintEnd_toStartOf="@id/scoreTextView"
-        app:layout_constraintTop_toTopOf="parent"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:textAppearance="@style/TextAppearance.WhoSings.H2"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:visibility="visible" />
+        app:layout_constraintEnd_toStartOf="@id/scoreTextView"
+        app:layout_constraintStart_toEndOf="@id/imageViewAvatar"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Name Surnameeeeeeeeeeeeeee Aaa" />
 
     <TextView
         android:id="@+id/scoreTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="20"
         android:textAppearance="@style/TextAppearance.WhoSings.H2"
         android:textSize="30dp"
-        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:visibility="visible" />
-
-
+        tools:text="20" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

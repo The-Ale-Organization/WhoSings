@@ -46,9 +46,9 @@
 
     <fragment
         android:id="@+id/rankingFragment"
-        android:name="com.musixmatch.whosings.ui.fragment.RankingFragment"
+        android:name="com.musixmatch.whosings.ui.fragment.HighScoresFragment"
         android:label="RankingFragment"
-        tools:layout="@layout/fragment_ranking"
+        tools:layout="@layout/fragment_high_scores"
         >
         <action
             android:id="@+id/action_rankingFragment_to_homeFragment"

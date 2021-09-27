@@ -3,6 +3,7 @@ package com.musixmatch.whosings.data.state
 import com.musixmatch.whosings.business.error.ErrorHandler
 import com.musixmatch.whosings.data.model.Question
 import com.musixmatch.whosings.data.model.UserInfo
+import com.musixmatch.whosings.data.model.UserScoreItem
 
 // Represents base UI states.
 sealed class UiState {
@@ -38,7 +39,7 @@ sealed class QuestionState : UiState() {
 
 sealed class RankingState : UiState() {
     data class RankAvailable(
-        val questionIndex: Int,
+        val items: List<UserScoreItem>
     ) : RankingState()
 }
 
