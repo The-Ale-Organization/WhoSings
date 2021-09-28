@@ -3,10 +3,12 @@ package com.musixmatch.whosings.ui.activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import com.musixmatch.whosings.R
+import com.musixmatch.whosings.business.error.ErrorHandler
 import com.musixmatch.whosings.databinding.ActivityQuizBinding
 import com.musixmatch.whosings.ui.UiStateListener
+import com.musixmatch.whosings.ui.fragment.ErrorDialog
 import dagger.hilt.android.AndroidEntryPoint
+import java.lang.Exception
 
 @AndroidEntryPoint
 class QuizActivity : AppCompatActivity(), UiStateListener {
@@ -29,5 +31,10 @@ class QuizActivity : AppCompatActivity(), UiStateListener {
 
     override fun hideProgress() {
         binding.progressBar.visibility = View.GONE
+    }
+
+    override fun showError(uiError: ErrorHandler.UIError) {
+        ErrorDialog().show(
+            supportFragmentManager, "TAG")
     }
 }

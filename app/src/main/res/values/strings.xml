@@ -8,6 +8,9 @@
     <string name="sign_up">Register</string>
     <string name="sign_in_description">Already registered?</string>
     <string name="sign_up_description">You don\'t have an account yet?</string>
+    <string name="error_not_registered">This username is not registered yet. Please register.</string>
+    <string name="error_already_registered">This username already exists. Please login.</string>
+    <string name="error_empty_username">Please insert a username</string>
 
     <!-- Home -->
     <string name="logout">Logout</string>

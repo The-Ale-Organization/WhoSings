@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.musixmatch.whosings.R
+import com.musixmatch.whosings.business.error.ErrorHandler
 import com.musixmatch.whosings.data.state.LoginState
 import com.musixmatch.whosings.data.state.UiState
 import com.musixmatch.whosings.databinding.FragmentLoginBinding
@@ -77,15 +78,31 @@ class LoginFragment : Fragment() {
                     is LoginState.LoggedIn -> {
                         Timber.d("State SUCCESS")
                         hideProgressBar()
+                        binding.userTextField.error = null
                         findNavController().navigate(R.id.action_introFragment_to_homeFragment)
                     }
                     is UiState.Error -> {
                         Timber.d("State ERROR")
                         hideProgressBar()
-
+                        when (uiState.type) {
+                            ErrorHandler.UIError.UserNotFound -> {
+                                binding.userTextField.error = getString(R.string.error_not_registered)
+                            }
+                            ErrorHandler.UIError.AlreadyRegistered -> {
+                                binding.userTextField.error = getString(R.string.error_already_registered)
+                            }
+                            ErrorHandler.UIError.EmptyField -> {
+                                binding.userTextField.error = getString(R.string.error_empty_username)
+                            }
+                            else -> {
+                                binding.userTextField.error = null
+                                mUiStateListener?.showError(uiState.type)
+                            }
+                        }
                     }
                     is UiState.Loading -> {
                         Timber.d("State LOADING")
+                        binding.userTextField.error = null
                         showProgressBar()
                     }
                 }

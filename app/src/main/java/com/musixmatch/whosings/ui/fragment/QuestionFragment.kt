@@ -99,6 +99,7 @@ class QuestionFragment : Fragment() {
                     }
                     is UiState.Error -> {
                         hideProgressBar()
+                        mUiStateListener?.showError(uiState.type)
                     }
                     is UiState.Loading -> {
                         showProgressBar()
