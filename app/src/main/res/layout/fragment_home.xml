@@ -37,6 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:textAppearance="@style/TextAppearance.WhoSings.H2"
+        android:textStyle="bold"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@id/scoreDescriptionTextView"
         app:layout_constraintStart_toEndOf="@id/scoreDescriptionTextView"
@@ -70,7 +71,7 @@
         android:id="@+id/userInfoContainer"
         android:layout_width="0dp"
         android:layout_height="250dp"
-        android:background="@color/purple_200"
+        android:background="@drawable/rounded_rect"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -83,14 +84,15 @@
         app:layout_constraintEnd_toEndOf="@id/userInfoContainer"
         app:layout_constraintStart_toStartOf="@id/userInfoContainer"
         app:layout_constraintTop_toTopOf="@id/userInfoContainer"
-        tools:background="@color/limeGreen" />
+        android:background="@drawable/ic_user" />
 
     <TextView
         android:id="@+id/nameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:textAppearance="@style/TextAppearance.WhoSings.Body2"
+        android:textAppearance="@style/TextAppearance.WhoSings.Body1"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@id/userInfoContainer"
         app:layout_constraintStart_toStartOf="@id/userInfoContainer"
         app:layout_constraintTop_toBottomOf="@id/userAvatar"
@@ -114,6 +116,7 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="5dp"
         android:textAppearance="@style/TextAppearance.WhoSings.Body2"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@id/bestScoreDescriptionTextView"
         app:layout_constraintStart_toStartOf="@id/bestScoreDescriptionTextView"
         app:layout_constraintTop_toBottomOf="@id/bestScoreDescriptionTextView"
@@ -136,7 +139,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="15dp"
-        android:text="@string/you_best_score"
+        android:text="@string/you_ranking_position"
         android:textAppearance="@style/TextAppearance.WhoSings.Body2"
         app:layout_constraintEnd_toEndOf="@id/userInfoContainer"
         app:layout_constraintTop_toBottomOf="@id/nameTextView" />
@@ -148,6 +151,7 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="5dp"
         android:textAppearance="@style/TextAppearance.WhoSings.Body2"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@id/rankPositionDescriptionView"
         app:layout_constraintStart_toStartOf="@id/rankPositionDescriptionView"
         app:layout_constraintTop_toBottomOf="@id/rankPositionDescriptionView"

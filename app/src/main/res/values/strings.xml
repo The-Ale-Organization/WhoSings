@@ -17,18 +17,32 @@
     <string name="ready_for_quiz">Ready for the next quiz?</string>
     <string name="play">Play</string>
     <string name="you_best_score">Your best score</string>
+    <string name="you_ranking_position">Your ranking position</string>
     <string name="position">Position</string>
     <string name="ranking">Ranking</string>
-    <string name="recent_scores">Recent scores</string>
+    <string name="recent_scores">History</string>
 
     <!-- Question -->
-    <string name="current_score">Score</string>
-    <string name="question">Who sings "%1$s"?</string>
+    <string name="current_score">You scored</string>
+    <string name="question">Who sings \"%1$s\"?</string>
     <string name="question_counter">Question %1$s of %2$s</string>
 
     <!-- Ranking -->
     <string name="best_player_title">Best players of all times</string>
     <string name="back">Back</string>
+    <string name="score_indicator">Score</string>
+    <string name="no_ranking_items_found">No high scores found. Play and be the first!</string>
+
+    <!-- User history -->
+    <string name="your_recent_games">Your recent games</string>
+    <string name="no_history_found">You have not played any games yet.</string>
+
+    <!-- Error -->
+    <string name="generic_error_title">Something went wrong</string>
+    <string name="generic_error_description">Sorry for the inconvenience. Please try again.</string>
+    <string name="generic_error_accept">OK</string>
+
+
 
 
 

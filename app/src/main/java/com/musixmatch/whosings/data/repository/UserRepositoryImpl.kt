@@ -50,7 +50,7 @@ class UserRepositoryImpl @Inject constructor(
             // Add the new score to the list.
             val updatedScores: MutableList<ScoreEntity> = user.scores?.toMutableList() ?: mutableListOf()
             updatedScores.add(ScoreEntity(
-                score = 0,
+                score = score,
                 day = day,
                 month = month,
                 year = year

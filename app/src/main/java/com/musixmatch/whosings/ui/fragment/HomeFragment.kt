@@ -153,11 +153,11 @@ class HomeFragment : Fragment() {
         binding.nameTextView.text = userInfo.username
         binding.bestScoreTextView.text = userInfo.bestScore?.toString() ?: "N.A."
         binding.rankTextView.text =
-            if (userInfo.totalUsers != null && userInfo.totalUsers > 0) {
+            if (userInfo.usersWithBestScore != null && userInfo.usersWithBestScore > 0) {
                 if (userInfo.bestScore != null && userInfo.rankingPosition != null && userInfo.rankingPosition > 0) {
-                    "${userInfo.rankingPosition} of ${userInfo.totalUsers}"
+                    "${userInfo.rankingPosition} of ${userInfo.usersWithBestScore}"
                 } else {
-                    "- of ${userInfo.totalUsers}"
+                    "- of ${userInfo.usersWithBestScore}"
                 }
             } else {
                 "N.A."

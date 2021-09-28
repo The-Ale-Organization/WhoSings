@@ -16,14 +16,14 @@ class GetUserInfoUseCase @Inject constructor(
             userEntity?.let { user ->
                 // Get overall position.
                 val users = userRepository.getRegisteredUsers()
-                val position = userRepository.getRegisteredUsers()
-                    ?.sortedBy { u -> u.bestScore }?.indexOf(user)
+                val activeUsers = users?.filter { u -> u.bestScore != null }
+                val position = activeUsers?.sortedByDescending { u -> u.bestScore }?.indexOf(user)
 
                 return UserInfo(
                     username = userEntity.username,
                     bestScore = userEntity.bestScore,
                     rankingPosition = position?.plus(1),
-                    totalUsers = users?.count(),
+                    usersWithBestScore = activeUsers?.count(),
                     avatarUrl = ""
                 )
             } ?: throw UserNotFoundException()

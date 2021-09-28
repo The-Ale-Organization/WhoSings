@@ -1,5 +1,6 @@
 package com.musixmatch.whosings.ui.fragment
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -92,12 +93,22 @@ class HighScoresFragment : Fragment() {
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun showList(items: List<UserScoreItem>) {
-        val layoutManager = LinearLayoutManager(requireContext())
-        binding.recyclerView.layoutManager = layoutManager
-        val adapter = HighScoresAdapter(items)
-        binding.recyclerView.adapter = adapter
-        adapter.notifyDataSetChanged()
+        if (items.isEmpty()) {
+            binding.noItemsTextView.visibility = View.VISIBLE
+            binding.scoreIndicator.visibility = View.GONE
+            binding.recyclerView.visibility = View.GONE
+        } else {
+            binding.noItemsTextView.visibility = View.GONE
+            binding.scoreIndicator.visibility = View.VISIBLE
+            binding.recyclerView.visibility = View.VISIBLE
+            val layoutManager = LinearLayoutManager(requireContext())
+            binding.recyclerView.layoutManager = layoutManager
+            val adapter = HighScoresAdapter(items)
+            binding.recyclerView.adapter = adapter
+            adapter.notifyDataSetChanged()
+        }
     }
 
     private fun showProgressBar() {

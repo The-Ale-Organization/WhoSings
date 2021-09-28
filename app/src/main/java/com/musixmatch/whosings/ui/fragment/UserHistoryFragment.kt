@@ -15,6 +15,7 @@ import com.musixmatch.whosings.data.state.UiState
 import com.musixmatch.whosings.data.state.UserHistoryState
 import com.musixmatch.whosings.databinding.FragmentUserHistoryBinding
 import com.musixmatch.whosings.ui.UiStateListener
+import com.musixmatch.whosings.ui.adapter.HighScoresAdapter
 import com.musixmatch.whosings.ui.adapter.UserHistoryAdapter
 import com.musixmatch.whosings.ui.viewmodel.UserHistoryViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -93,11 +94,20 @@ class UserHistoryFragment : Fragment() {
     }
 
     private fun showList(items: List<RecentGameItem>) {
-        val layoutManager = LinearLayoutManager(requireContext())
-        binding.recyclerView.layoutManager = layoutManager
-        val adapter = UserHistoryAdapter(items)
-        binding.recyclerView.adapter = adapter
-        adapter.notifyDataSetChanged()
+        if (items.isEmpty()) {
+            binding.noItemsTextView.visibility = View.VISIBLE
+            binding.scoreIndicator.visibility = View.GONE
+            binding.recyclerView.visibility = View.GONE
+        } else {
+            binding.noItemsTextView.visibility = View.GONE
+            binding.scoreIndicator.visibility = View.VISIBLE
+            binding.recyclerView.visibility = View.VISIBLE
+            val layoutManager = LinearLayoutManager(requireContext())
+            binding.recyclerView.layoutManager = layoutManager
+            val adapter = UserHistoryAdapter(items)
+            binding.recyclerView.adapter = adapter
+            adapter.notifyDataSetChanged()
+        }
     }
 
     private fun showProgressBar() {

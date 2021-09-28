@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
+import com.musixmatch.whosings.R
 import com.musixmatch.whosings.databinding.ErrorDialogBinding
 
 class ErrorDialog: DialogFragment() {
@@ -33,6 +34,9 @@ class ErrorDialog: DialogFragment() {
         binding.confirmButton.setOnClickListener {
             dismiss()
         }
+        binding.confirmButton.text = getString(R.string.generic_error_accept)
+        binding.descriptionTextView.text = getString(R.string.generic_error_description)
+        binding.titleTextView.text = getString(R.string.generic_error_title)
 
     }
 }

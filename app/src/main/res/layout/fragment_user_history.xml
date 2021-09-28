@@ -23,13 +23,33 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="@string/best_player_title"
+        android:text="@string/your_recent_games"
         android:textAppearance="@style/TextAppearance.WhoSings.H2"
-        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/backButton"
-        tools:visibility="visible" />
+        />
+
+    <TextView
+        android:id="@+id/noItemsTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/scoreIndicator"
+        android:textAppearance="@style/TextAppearance.WhoSings.Body1"
+        android:visibility="gone"
+        android:text="@string/no_history_found"/>
+
+    <TextView
+        android:id="@+id/scoreIndicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@id/recyclerView"
+        app:layout_constraintTop_toBottomOf="@id/rankingDescriptionTextView"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:text="@string/score_indicator"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
@@ -37,9 +57,9 @@
         android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/rankingDescriptionTextView"
+        app:layout_constraintTop_toBottomOf="@id/scoreIndicator"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:listitem="@layout/ranking_list_item"
+        tools:listitem="@layout/recent_game_item"
         />
 
 

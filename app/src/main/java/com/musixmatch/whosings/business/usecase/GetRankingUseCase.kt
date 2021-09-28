@@ -9,8 +9,8 @@ class GetRankingUseCase @Inject constructor(
 
     fun getRanking(): List<Pair<String, Int>> {
         val users = userRepository.getRegisteredUsers()
-        return userRepository.getRegisteredUsers()?.filter { it.bestScore != null }
-            ?.sortedBy { u -> u.bestScore }
+        return users?.filter { it.bestScore != null }
+            ?.sortedByDescending { u -> u.bestScore }
             ?.map { Pair(it.username, it.bestScore!!) } ?: listOf()
     }
 
