@@ -50,6 +50,19 @@ sealed class UserHistoryState : UiState() {
     ) : UserHistoryState()
 }
 
+
+sealed class TimerState {
+    /**
+     * @param remainingTime remaining time in seconds.
+     * @param progress remaining time normalized in interval (0..100).
+     */
+    data class Tick(
+        val remainingTime: Int,
+        val progress: Int
+    ) : TimerState()
+    object Timeout : TimerState()
+}
+
 enum class AnswerType {
     Correct,
     Wrong,

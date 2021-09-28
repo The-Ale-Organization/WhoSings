@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.musixmatch.whosings.R
 import com.musixmatch.whosings.data.model.Question
 import com.musixmatch.whosings.data.state.QuestionState
+import com.musixmatch.whosings.data.state.TimerState
 import com.musixmatch.whosings.data.state.UiState
 import com.musixmatch.whosings.databinding.FragmentQuestionBinding
 import com.musixmatch.whosings.ui.UiStateListener
@@ -80,6 +81,9 @@ class QuestionFragment : Fragment() {
                     is QuestionState.ShowQuestion -> {
                         hideProgressBar()
                         Timber.d("Show question ${uiState.questionIndex +1} of ${uiState.totalQuestions}")
+                        // Start countdown.
+                        questionViewModel.startCountDown()
+                        // Update UI.
                         binding.scoreValueTextView.text = uiState.currentScore.toString()
                         binding.questionCounterTextView.text = getString(
                             R.string.question_counter,
@@ -99,6 +103,18 @@ class QuestionFragment : Fragment() {
                     is UiState.Loading -> {
                         showProgressBar()
                     }
+                }
+            }
+        }
+
+        questionViewModel.timerStatus.observe(viewLifecycleOwner) {
+            when(it) {
+                is TimerState.Tick -> {
+                    binding.circularProgressIndicator.progress = it.progress
+                    binding.countdownValueTextView.text = it.remainingTime.toString()
+                }
+                TimerState.Timeout -> {
+                    questionViewModel.processAnswer(null)
                 }
             }
         }

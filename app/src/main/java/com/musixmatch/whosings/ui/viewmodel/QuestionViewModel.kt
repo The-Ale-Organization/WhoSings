@@ -10,11 +10,10 @@ import com.musixmatch.whosings.business.util.DispatcherProvider
 import com.musixmatch.whosings.data.model.Question
 import com.musixmatch.whosings.data.state.AnswerType
 import com.musixmatch.whosings.data.state.QuestionState
+import com.musixmatch.whosings.data.state.TimerState
 import com.musixmatch.whosings.data.state.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.supervisorScope
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -23,6 +22,9 @@ import javax.inject.Inject
  * without needing to pass a lot of data between fragments.
  * @see "https://developer.android.com/topic/libraries/architecture/viewmodel#sharing"
  */
+
+const val AVAILABLE_SECONDS = 10
+const val ONE_SECOND = 1000L
 
 @HiltViewModel
 class QuestionViewModel @Inject constructor(
@@ -38,6 +40,11 @@ class QuestionViewModel @Inject constructor(
 
     // The UI observes this LiveData to get its state updates.
     val uiState: LiveData<UiState> = _uiState
+
+    private val _timerState: MutableLiveData<TimerState> = MutableLiveData()
+    val timerStatus: LiveData<TimerState> = _timerState
+
+    private var countDownJob: Job? = null
 
     private var questionList = listOf<Question>()
     private var currentQuestionIndex = 0
@@ -81,6 +88,8 @@ class QuestionViewModel @Inject constructor(
     }
 
     fun processAnswer(answerIndex: Int?) = viewModelScope.launch(dispatchers.io()) {
+        stopCountDown()
+
         val answerType = when (answerIndex) {
             null -> {
                 // No answer given (timeout reached).
@@ -121,9 +130,47 @@ class QuestionViewModel @Inject constructor(
         }
     }
 
+    fun startCountDown() {
+        if (countDownJob == null) {
+            countDownJob = viewModelScope.launch {
+                Timber.d("TIMER - Start countdown")
+                (dispatchers.io()) {
+                    var remainingTime = AVAILABLE_SECONDS
+                    while (remainingTime > 0) {
+                        Timber.d("TIMER - Remaining time: $remainingTime")
+                        val progress = remainingTime * 100 / AVAILABLE_SECONDS
+                        emitTimerState(
+                            TimerState.Tick(
+                                progress = progress,
+                                remainingTime = remainingTime
+                            )
+                        )
+                        remainingTime--
+                        delay(ONE_SECOND)
+                    }
+                    Timber.d("TIMER - timeout reached")
+                    // Timeout reached.
+                    emitTimerState(TimerState.Timeout)
+                }
+            }
+        }
+    }
+
+    private fun stopCountDown() {
+        // Stop countdown.
+        Timber.d("TIMER - Cancel countdown")
+        countDownJob?.cancel()
+        countDownJob = null
+    }
+
     private suspend fun emitState(state: UiState) =
         withContext(dispatchers.main()) {
             _uiState.value = state
+        }
+
+    private suspend fun emitTimerState(state: TimerState) =
+        withContext(dispatchers.main()) {
+            _timerState.value = state
         }
 
 }
