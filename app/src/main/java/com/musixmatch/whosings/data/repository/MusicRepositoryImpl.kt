@@ -5,7 +5,7 @@ import com.musixmatch.whosings.data.api.TrackOrder
 import com.musixmatch.whosings.data.model.Artist
 import com.musixmatch.whosings.data.model.Lyrics
 import com.musixmatch.whosings.data.model.Song
-import com.musixmatch.whosings.data.storage.volatile.VolatileMemoryManager
+import com.musixmatch.whosings.data.storage.sharedpref.VolatileMemoryManager
 import javax.inject.Inject
 
 class MusicRepositoryImpl @Inject constructor(

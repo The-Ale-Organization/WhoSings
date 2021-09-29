@@ -1,4 +1,4 @@
-package com.musixmatch.whosings.business.error
+package com.musixmatch.whosings.data.exception
 
 import java.lang.Exception
 

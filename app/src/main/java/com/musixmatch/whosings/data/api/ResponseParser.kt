@@ -1,7 +1,7 @@
 package com.musixmatch.whosings.data.api
 
-import com.musixmatch.whosings.business.error.ErrorResponseException
-import com.musixmatch.whosings.business.error.MissingResponseFieldException
+import com.musixmatch.whosings.data.exception.ErrorResponseException
+import com.musixmatch.whosings.data.exception.MissingResponseFieldException
 import com.musixmatch.whosings.data.model.Response
 
 class ResponseParser {

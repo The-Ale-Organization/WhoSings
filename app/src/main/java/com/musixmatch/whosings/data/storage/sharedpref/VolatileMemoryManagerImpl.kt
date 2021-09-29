@@ -1,17 +1,14 @@
-package com.musixmatch.whosings.data.storage.volatile
+package com.musixmatch.whosings.data.storage.sharedpref
 
 import com.musixmatch.whosings.data.model.Lyrics
 import com.musixmatch.whosings.data.model.Song
 import com.musixmatch.whosings.data.model.Track
-import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
-class VolatileMemoryManager @Inject constructor() {
+class VolatileMemoryManagerImpl : VolatileMemoryManager {
 
     private val songList: MutableList<Song> = mutableListOf()
 
-    fun addTracks(newTracks: List<Track>) {
+    override fun addTracks(newTracks: List<Track>) {
         val songs = newTracks.map {
                 Song(
                     trackId = it.trackId,
@@ -23,21 +20,21 @@ class VolatileMemoryManager @Inject constructor() {
         songList.addAll(songs)
     }
 
-    fun getSongs(): List<Song> {
+    override fun getSongs(): List<Song> {
         return songList
     }
 
-    fun addLyrics(lyrics: Lyrics, trackId: Int) {
+    override fun addLyrics(lyrics: Lyrics, trackId: Int) {
         songList.firstOrNull { it.trackId == trackId }?.let {
             it.lyrics = lyrics.lyricsBody
         }
     }
 
-    fun clearSongs() {
+    override fun clearSongs() {
         songList.clear()
     }
 
-    fun clear() {
+    override fun clear() {
         clearSongs()
     }
 

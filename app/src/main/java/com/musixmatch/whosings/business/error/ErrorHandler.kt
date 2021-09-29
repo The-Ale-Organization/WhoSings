@@ -1,5 +1,8 @@
 package com.musixmatch.whosings.business.error
 
+import com.musixmatch.whosings.data.exception.AlreadyRegisteredUserException
+import com.musixmatch.whosings.data.exception.EmptyUserException
+import com.musixmatch.whosings.data.exception.UserNotFoundException
 import java.net.UnknownHostException
 import javax.inject.Inject
 

@@ -1,6 +1,6 @@
 package com.musixmatch.whosings.business.usecase
 
-import com.musixmatch.whosings.business.error.UserNotFoundException
+import com.musixmatch.whosings.data.exception.UserNotFoundException
 import com.musixmatch.whosings.data.model.UserInfo
 import com.musixmatch.whosings.data.repository.UserRepository
 import javax.inject.Inject
