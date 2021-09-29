@@ -1,4 +1,4 @@
-package com.musixmatch.whosings.ui.viewmodel
+package com.musixmatch.whosings.presentation.viewmodel
 
 import androidx.lifecycle.*
 import com.musixmatch.whosings.business.error.ErrorHandler

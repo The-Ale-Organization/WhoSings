@@ -1,14 +1,13 @@
-package com.musixmatch.whosings.ui.activity
+package com.musixmatch.whosings.presentation.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.musixmatch.whosings.business.error.ErrorHandler
 import com.musixmatch.whosings.databinding.ActivityQuizBinding
-import com.musixmatch.whosings.ui.UiStateListener
-import com.musixmatch.whosings.ui.fragment.ErrorDialog
+import com.musixmatch.whosings.presentation.UiStateListener
+import com.musixmatch.whosings.presentation.fragment.ErrorDialog
 import dagger.hilt.android.AndroidEntryPoint
-import java.lang.Exception
 
 @AndroidEntryPoint
 class QuizActivity : AppCompatActivity(), UiStateListener {

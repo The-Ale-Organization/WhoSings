@@ -1,4 +1,4 @@
-package com.musixmatch.whosings.ui.fragment
+package com.musixmatch.whosings.presentation.fragment
 
 import android.content.Context
 import android.os.Bundle
@@ -14,10 +14,9 @@ import com.musixmatch.whosings.data.model.RecentGameItem
 import com.musixmatch.whosings.data.state.UiState
 import com.musixmatch.whosings.data.state.UserHistoryState
 import com.musixmatch.whosings.databinding.FragmentUserHistoryBinding
-import com.musixmatch.whosings.ui.UiStateListener
-import com.musixmatch.whosings.ui.adapter.HighScoresAdapter
-import com.musixmatch.whosings.ui.adapter.UserHistoryAdapter
-import com.musixmatch.whosings.ui.viewmodel.UserHistoryViewModel
+import com.musixmatch.whosings.presentation.UiStateListener
+import com.musixmatch.whosings.presentation.adapter.UserHistoryAdapter
+import com.musixmatch.whosings.presentation.viewmodel.UserHistoryViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 import java.lang.RuntimeException

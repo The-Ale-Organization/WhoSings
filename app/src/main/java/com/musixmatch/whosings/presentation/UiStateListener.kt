@@ -1,4 +1,4 @@
-package com.musixmatch.whosings.ui
+package com.musixmatch.whosings.presentation
 
 import com.musixmatch.whosings.business.error.ErrorHandler
 

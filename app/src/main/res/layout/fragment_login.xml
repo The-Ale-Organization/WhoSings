@@ -6,13 +6,13 @@
     android:layout_height="match_parent"
     android:background="@color/lightGray"
     android:padding="12dp"
-    tools:context=".ui.fragment.LoginFragment">
+    tools:context=".presentation.fragment.LoginFragment">
 
     <TextView
         android:id="@+id/readyTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="40dp"
         android:text="@string/choose_name_description"
         android:textSize="24dp"
         app:layout_constraintEnd_toEndOf="parent"

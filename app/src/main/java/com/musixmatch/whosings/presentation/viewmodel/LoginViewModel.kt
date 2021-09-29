@@ -1,12 +1,12 @@
-package com.musixmatch.whosings.ui.viewmodel
+package com.musixmatch.whosings.presentation.viewmodel
 
 import androidx.lifecycle.*
 import com.musixmatch.whosings.business.error.ErrorHandler
-import com.musixmatch.whosings.business.usecase.ClearSessionUseCase
-import com.musixmatch.whosings.business.usecase.GetUserInfoUseCase
+import com.musixmatch.whosings.business.usecase.LoginUseCase
 import com.musixmatch.whosings.business.util.DefaultDispatcherProvider
 import com.musixmatch.whosings.business.util.DispatcherProvider
-import com.musixmatch.whosings.data.state.HomeState
+import com.musixmatch.whosings.business.usecase.RegistrationUseCase
+import com.musixmatch.whosings.data.state.LoginState
 import com.musixmatch.whosings.data.state.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -15,9 +15,9 @@ import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(
-    private val getUserInfoUseCase: GetUserInfoUseCase,
-    private val clearSessionUseCase: ClearSessionUseCase,
+class LoginViewModel @Inject constructor(
+    private val registrationUseCase: RegistrationUseCase,
+    private val loginUseCase: LoginUseCase,
     private val errorHandler: ErrorHandler,
     private val dispatchers: DispatcherProvider = DefaultDispatcherProvider()
 ) : ViewModel() {
@@ -27,17 +27,10 @@ class HomeViewModel @Inject constructor(
     // The UI observes this LiveData to get its state updates.
     val uiState: LiveData<UiState> = _uiState
 
-    /**
-     * @param currentScore score of the game that just finished. Null if we haven't just finished a game.
-     */
-    fun retrieveUserInfo(currentScore: Int? = null) = viewModelScope.launch(dispatchers.io()) {
-        emitState(UiState.Loading)
+    fun register(username: String?) = viewModelScope.launch(dispatchers.io()) {
         try {
-            val userInfo = getUserInfoUseCase.getUser()
-            emitState(HomeState.UserInfoAvailable(
-                userInfo = userInfo,
-                currentScore = currentScore
-            ))
+            registrationUseCase.registerUser(username)
+            emitState(LoginState.LoggedIn)
         } catch (exception: Exception) {
             Timber.e(exception)
             val uiError = errorHandler.handleError(exception)
@@ -45,9 +38,15 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    fun logout() = viewModelScope.launch(dispatchers.io()) {
-        clearSessionUseCase.clearSessionData()
-        emitState(HomeState.Logout)
+    fun login(username: String?) = viewModelScope.launch(dispatchers.io()) {
+        try {
+            loginUseCase.enrollUser(username)
+            emitState(LoginState.LoggedIn)
+        } catch (exception: Exception) {
+            Timber.e(exception)
+            val uiError = errorHandler.handleError(exception)
+            emitState(UiState.Error(uiError))
+        }
     }
 
     private suspend fun emitState(state: UiState) =

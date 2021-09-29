@@ -1,4 +1,4 @@
-package com.musixmatch.whosings.ui.adapter
+package com.musixmatch.whosings.presentation.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

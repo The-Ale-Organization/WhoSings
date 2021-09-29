@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/introFragment"
-        android:name="com.musixmatch.whosings.ui.fragment.LoginFragment"
+        android:name="com.musixmatch.whosings.presentation.fragment.LoginFragment"
         android:label="LoginFragment"
         tools:layout="@layout/fragment_login"
         >
@@ -18,7 +18,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.musixmatch.whosings.ui.fragment.HomeFragment"
+        android:name="com.musixmatch.whosings.presentation.fragment.HomeFragment"
         android:label="HomeFragment"
         tools:layout="@layout/fragment_home"
         >
@@ -38,7 +38,7 @@
 
     <fragment
         android:id="@+id/questionFragment"
-        android:name="com.musixmatch.whosings.ui.fragment.QuestionFragment"
+        android:name="com.musixmatch.whosings.presentation.fragment.QuestionFragment"
         android:label="QuestionFragment"
         tools:layout="@layout/fragment_question"
         >
@@ -49,7 +49,7 @@
 
     <fragment
         android:id="@+id/rankingFragment"
-        android:name="com.musixmatch.whosings.ui.fragment.HighScoresFragment"
+        android:name="com.musixmatch.whosings.presentation.fragment.HighScoresFragment"
         android:label="RankingFragment"
         tools:layout="@layout/fragment_high_scores"
         >
@@ -62,7 +62,7 @@
 
     <fragment
         android:id="@+id/userHistoryFragment"
-        android:name="com.musixmatch.whosings.ui.fragment.UserHistoryFragment"
+        android:name="com.musixmatch.whosings.presentation.fragment.UserHistoryFragment"
         android:label="UserHistoryFragment"
         tools:layout="@layout/fragment_user_history"
         >

@@ -1,4 +1,4 @@
-package com.musixmatch.whosings.ui.fragment
+package com.musixmatch.whosings.presentation.fragment
 
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable

@@ -1,4 +1,4 @@
-package com.musixmatch.whosings.ui.fragment
+package com.musixmatch.whosings.presentation.fragment
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -15,9 +15,9 @@ import com.musixmatch.whosings.data.model.UserScoreItem
 import com.musixmatch.whosings.data.state.RankingState
 import com.musixmatch.whosings.data.state.UiState
 import com.musixmatch.whosings.databinding.FragmentHighScoresBinding
-import com.musixmatch.whosings.ui.UiStateListener
-import com.musixmatch.whosings.ui.adapter.HighScoresAdapter
-import com.musixmatch.whosings.ui.viewmodel.HighScoresViewModel
+import com.musixmatch.whosings.presentation.UiStateListener
+import com.musixmatch.whosings.presentation.adapter.HighScoresAdapter
+import com.musixmatch.whosings.presentation.viewmodel.HighScoresViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 import java.lang.RuntimeException

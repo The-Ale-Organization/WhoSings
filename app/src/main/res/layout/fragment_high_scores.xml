@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/lightGray"
     android:padding="12dp"
-    tools:context=".ui.fragment.HomeFragment">
+    tools:context=".presentation.fragment.HomeFragment">
 
     <Button
         android:id="@+id/backButton"
