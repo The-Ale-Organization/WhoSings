@@ -33,7 +33,7 @@ class HomeViewModel @Inject constructor(
     fun retrieveUserInfo(currentScore: Int? = null) = viewModelScope.launch(dispatchers.io()) {
         emitState(UiState.Loading)
         try {
-            val userInfo = getUserInfoUseCase.getUser()
+            val userInfo = getUserInfoUseCase.getUserInfo()
             emitState(HomeState.UserInfoAvailable(
                 userInfo = userInfo,
                 currentScore = currentScore

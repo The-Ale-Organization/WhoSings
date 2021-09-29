@@ -1,5 +1,6 @@
 package com.musixmatch.whosings.data.api
 
+import com.musixmatch.whosings.business.util.PAGE_SIZE
 import com.musixmatch.whosings.data.model.api.ArtistList
 import com.musixmatch.whosings.data.model.api.LyricsWrapper
 import com.musixmatch.whosings.data.model.api.Response

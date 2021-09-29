@@ -1,11 +1,14 @@
 package com.musixmatch.whosings.business.usecase
 
+import com.musixmatch.whosings.business.util.MAX_SONGS_PAGE_INDEX
 import com.musixmatch.whosings.data.api.TrackOrder
 import com.musixmatch.whosings.data.model.presentation.Song
 import com.musixmatch.whosings.data.repository.MusicRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.async
 import javax.inject.Inject
+
+//
 
 class GetSongsUseCase @Inject constructor(
     private val musicRepository: MusicRepository
@@ -14,7 +17,7 @@ class GetSongsUseCase @Inject constructor(
     suspend fun getSongs(scope: CoroutineScope): List<Song> {
         // Get tracks from api. Tracks will contain no lyrics.
         val songsWithoutLyrics = musicRepository.fetchSongs(
-            page = 1,
+            page = (0..MAX_SONGS_PAGE_INDEX).random(),
             trackRatingOrder = TrackOrder.desc
         )
 
