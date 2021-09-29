@@ -1,6 +1,6 @@
 package com.musixmatch.whosings.data.repository
 
-import com.musixmatch.whosings.data.storage.room.UserEntity
+import com.musixmatch.whosings.data.model.entity.UserEntity
 
 interface UserRepository {
 

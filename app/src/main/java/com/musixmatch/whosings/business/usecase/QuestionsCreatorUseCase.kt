@@ -1,6 +1,6 @@
 package com.musixmatch.whosings.business.usecase
 
-import com.musixmatch.whosings.data.model.Question
+import com.musixmatch.whosings.data.model.presentation.Question
 import com.musixmatch.whosings.data.repository.MusicRepository
 import javax.inject.Inject
 

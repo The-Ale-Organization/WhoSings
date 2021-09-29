@@ -1,4 +1,4 @@
-package com.musixmatch.whosings.data.storage.room
+package com.musixmatch.whosings.data.model.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

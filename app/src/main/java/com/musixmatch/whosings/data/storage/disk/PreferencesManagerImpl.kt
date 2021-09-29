@@ -1,4 +1,4 @@
-package com.musixmatch.whosings.data.storage.sharedpref
+package com.musixmatch.whosings.data.storage.disk
 
 import android.content.Context
 

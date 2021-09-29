@@ -1,6 +1,9 @@
 package com.musixmatch.whosings.data.api
 
-import com.musixmatch.whosings.data.model.*
+import com.musixmatch.whosings.data.model.api.ArtistList
+import com.musixmatch.whosings.data.model.api.LyricsWrapper
+import com.musixmatch.whosings.data.model.api.Response
+import com.musixmatch.whosings.data.model.api.TrackList
 import retrofit2.http.GET
 import retrofit2.http.Query
 

@@ -1,10 +1,7 @@
 package com.musixmatch.whosings.business.usecase
 
-import android.util.Log
 import org.junit.Test
 
-import org.junit.Assert.*
-import timber.log.Timber
 import kotlin.random.Random
 
 class QuestionsCreatorUseCaseTest {

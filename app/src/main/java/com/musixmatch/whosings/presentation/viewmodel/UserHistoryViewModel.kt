@@ -5,7 +5,7 @@ import com.musixmatch.whosings.business.error.ErrorHandler
 import com.musixmatch.whosings.business.usecase.GetRecentGamesUseCase
 import com.musixmatch.whosings.business.util.DefaultDispatcherProvider
 import com.musixmatch.whosings.business.util.DispatcherProvider
-import com.musixmatch.whosings.data.model.RecentGameItem
+import com.musixmatch.whosings.data.model.presentation.RecentGameItem
 import com.musixmatch.whosings.data.state.UiState
 import com.musixmatch.whosings.data.state.UserHistoryState
 import dagger.hilt.android.lifecycle.HiltViewModel

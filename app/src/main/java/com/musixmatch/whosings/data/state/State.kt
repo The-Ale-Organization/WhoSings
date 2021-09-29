@@ -1,10 +1,10 @@
 package com.musixmatch.whosings.data.state
 
 import com.musixmatch.whosings.business.error.ErrorHandler
-import com.musixmatch.whosings.data.model.Question
-import com.musixmatch.whosings.data.model.RecentGameItem
-import com.musixmatch.whosings.data.model.UserInfo
-import com.musixmatch.whosings.data.model.UserScoreItem
+import com.musixmatch.whosings.data.model.presentation.Question
+import com.musixmatch.whosings.data.model.presentation.RecentGameItem
+import com.musixmatch.whosings.data.model.presentation.UserInfo
+import com.musixmatch.whosings.data.model.presentation.UserScoreItem
 
 // Represents base UI states.
 sealed class UiState {

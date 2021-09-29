@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.musixmatch.whosings.R
-import com.musixmatch.whosings.data.model.Question
+import com.musixmatch.whosings.data.model.presentation.Question
 import com.musixmatch.whosings.data.state.QuestionState
 import com.musixmatch.whosings.data.state.TimerState
 import com.musixmatch.whosings.data.state.UiState

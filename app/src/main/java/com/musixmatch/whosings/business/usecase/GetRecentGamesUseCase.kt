@@ -2,7 +2,7 @@ package com.musixmatch.whosings.business.usecase
 
 import com.musixmatch.whosings.data.exception.UserNotFoundException
 import com.musixmatch.whosings.data.repository.UserRepository
-import com.musixmatch.whosings.data.storage.room.ScoreEntity
+import com.musixmatch.whosings.data.model.entity.ScoreEntity
 import javax.inject.Inject
 
 class GetRecentGamesUseCase @Inject constructor(

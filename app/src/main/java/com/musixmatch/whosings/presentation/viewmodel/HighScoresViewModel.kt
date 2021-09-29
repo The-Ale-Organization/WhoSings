@@ -5,7 +5,7 @@ import com.musixmatch.whosings.business.error.ErrorHandler
 import com.musixmatch.whosings.business.usecase.GetRankingUseCase
 import com.musixmatch.whosings.business.util.DefaultDispatcherProvider
 import com.musixmatch.whosings.business.util.DispatcherProvider
-import com.musixmatch.whosings.data.model.UserScoreItem
+import com.musixmatch.whosings.data.model.presentation.UserScoreItem
 import com.musixmatch.whosings.data.state.RankingState
 import com.musixmatch.whosings.data.state.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel

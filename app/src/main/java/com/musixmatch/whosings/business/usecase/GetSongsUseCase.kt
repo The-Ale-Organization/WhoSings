@@ -1,7 +1,7 @@
 package com.musixmatch.whosings.business.usecase
 
 import com.musixmatch.whosings.data.api.TrackOrder
-import com.musixmatch.whosings.data.model.Song
+import com.musixmatch.whosings.data.model.presentation.Song
 import com.musixmatch.whosings.data.repository.MusicRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.async

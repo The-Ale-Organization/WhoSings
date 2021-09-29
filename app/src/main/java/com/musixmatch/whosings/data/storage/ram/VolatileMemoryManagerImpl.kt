@@ -1,8 +1,8 @@
-package com.musixmatch.whosings.data.storage.sharedpref
+package com.musixmatch.whosings.data.storage.ram
 
-import com.musixmatch.whosings.data.model.Lyrics
-import com.musixmatch.whosings.data.model.Song
-import com.musixmatch.whosings.data.model.Track
+import com.musixmatch.whosings.data.model.api.Lyrics
+import com.musixmatch.whosings.data.model.presentation.Song
+import com.musixmatch.whosings.data.model.api.Track
 
 class VolatileMemoryManagerImpl : VolatileMemoryManager {
 

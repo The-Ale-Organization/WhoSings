@@ -2,12 +2,12 @@ package com.musixmatch.whosings.di
 
 import android.content.Context
 import androidx.room.Room
-import com.musixmatch.whosings.data.storage.room.AppDatabase
-import com.musixmatch.whosings.data.storage.room.UserDao
-import com.musixmatch.whosings.data.storage.sharedpref.PreferencesManager
-import com.musixmatch.whosings.data.storage.sharedpref.PreferencesManagerImpl
-import com.musixmatch.whosings.data.storage.sharedpref.VolatileMemoryManager
-import com.musixmatch.whosings.data.storage.sharedpref.VolatileMemoryManagerImpl
+import com.musixmatch.whosings.data.storage.disk.AppDatabase
+import com.musixmatch.whosings.data.storage.disk.UserDao
+import com.musixmatch.whosings.data.storage.disk.PreferencesManager
+import com.musixmatch.whosings.data.storage.disk.PreferencesManagerImpl
+import com.musixmatch.whosings.data.storage.ram.VolatileMemoryManager
+import com.musixmatch.whosings.data.storage.ram.VolatileMemoryManagerImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

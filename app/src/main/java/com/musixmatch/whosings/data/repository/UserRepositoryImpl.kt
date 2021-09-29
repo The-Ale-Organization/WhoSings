@@ -1,9 +1,9 @@
 package com.musixmatch.whosings.data.repository
 
-import com.musixmatch.whosings.data.storage.room.ScoreEntity
-import com.musixmatch.whosings.data.storage.room.UserDao
-import com.musixmatch.whosings.data.storage.room.UserEntity
-import com.musixmatch.whosings.data.storage.sharedpref.PreferencesManager
+import com.musixmatch.whosings.data.model.entity.ScoreEntity
+import com.musixmatch.whosings.data.storage.disk.UserDao
+import com.musixmatch.whosings.data.model.entity.UserEntity
+import com.musixmatch.whosings.data.storage.disk.PreferencesManager
 import javax.inject.Inject
 import kotlin.math.max
 
@@ -49,12 +49,14 @@ class UserRepositoryImpl @Inject constructor(
             val bestScore = max(score, user.scores?.map { it.score }?.maxOrNull() ?: 0)
             // Add the new score to the list.
             val updatedScores: MutableList<ScoreEntity> = user.scores?.toMutableList() ?: mutableListOf()
-            updatedScores.add(ScoreEntity(
+            updatedScores.add(
+                ScoreEntity(
                 score = score,
                 day = day,
                 month = month,
                 year = year
-            ))
+            )
+            )
             val updatedUser = user.copy(
                 username = user.username,
                 avatarUrl = user.avatarUrl,

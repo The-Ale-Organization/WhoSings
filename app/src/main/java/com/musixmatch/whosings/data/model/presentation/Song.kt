@@ -1,4 +1,4 @@
-package com.musixmatch.whosings.data.model
+package com.musixmatch.whosings.data.model.presentation
 
 data class Song(
     val trackId: Int,

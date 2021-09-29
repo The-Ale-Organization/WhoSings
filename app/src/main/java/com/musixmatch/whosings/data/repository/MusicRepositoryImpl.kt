@@ -2,10 +2,10 @@ package com.musixmatch.whosings.data.repository
 
 import com.musixmatch.whosings.data.api.ApiHelper
 import com.musixmatch.whosings.data.api.TrackOrder
-import com.musixmatch.whosings.data.model.Artist
-import com.musixmatch.whosings.data.model.Lyrics
-import com.musixmatch.whosings.data.model.Song
-import com.musixmatch.whosings.data.storage.sharedpref.VolatileMemoryManager
+import com.musixmatch.whosings.data.model.api.Artist
+import com.musixmatch.whosings.data.model.api.Lyrics
+import com.musixmatch.whosings.data.model.presentation.Song
+import com.musixmatch.whosings.data.storage.ram.VolatileMemoryManager
 import javax.inject.Inject
 
 class MusicRepositoryImpl @Inject constructor(

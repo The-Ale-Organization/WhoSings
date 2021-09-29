@@ -1,8 +1,9 @@
-package com.musixmatch.whosings.data.storage.room
+package com.musixmatch.whosings.data.storage.disk
 
 import androidx.room.TypeConverter
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.musixmatch.whosings.data.model.entity.ScoreEntity
 import java.io.Serializable
 import java.lang.reflect.Type
 

@@ -1,6 +1,7 @@
-package com.musixmatch.whosings.data.storage.room
+package com.musixmatch.whosings.data.model.entity
 
 import androidx.room.*
+import com.musixmatch.whosings.data.storage.disk.ScoreEntityTypeConverter
 
 @Entity(tableName = "user")
 @TypeConverters(ScoreEntityTypeConverter::class)

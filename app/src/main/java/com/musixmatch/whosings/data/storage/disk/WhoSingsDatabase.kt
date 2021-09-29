@@ -1,8 +1,10 @@
-package com.musixmatch.whosings.data.storage.room
+package com.musixmatch.whosings.data.storage.disk
 
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.musixmatch.whosings.data.model.entity.ScoreEntity
+import com.musixmatch.whosings.data.model.entity.UserEntity
 
 /**
  * The [Room] database for this app.
