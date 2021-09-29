@@ -14,7 +14,7 @@ class UserHistoryAdapter constructor(private val items: List<RecentGameItem>) :
     class UserScoreItemViewHolder(private val binding: RecentGameItemBinding) : RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n")
         fun bind(item: RecentGameItem) {
-            binding.dateTextView.text = "${item.day}/${item.month}/${item.year}"
+            binding.dateTextView.text = item.time
             binding.scoreTextView.text = item.score.toString()
         }
     }

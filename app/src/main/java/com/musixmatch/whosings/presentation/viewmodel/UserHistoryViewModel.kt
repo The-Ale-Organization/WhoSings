@@ -3,6 +3,7 @@ package com.musixmatch.whosings.presentation.viewmodel
 import androidx.lifecycle.*
 import com.musixmatch.whosings.business.error.ErrorHandler
 import com.musixmatch.whosings.business.usecase.GetRecentGamesUseCase
+import com.musixmatch.whosings.business.util.DateConverter
 import com.musixmatch.whosings.business.util.DefaultDispatcherProvider
 import com.musixmatch.whosings.business.util.DispatcherProvider
 import com.musixmatch.whosings.data.model.presentation.RecentGameItem
@@ -18,6 +19,7 @@ import javax.inject.Inject
 class UserHistoryViewModel @Inject constructor(
     private val getRecentGamesUseCase: GetRecentGamesUseCase,
     private val errorHandler: ErrorHandler,
+    private val dateConverter: DateConverter,
     private val dispatchers: DispatcherProvider = DefaultDispatcherProvider()
 ) : ViewModel() {
 
@@ -33,9 +35,7 @@ class UserHistoryViewModel @Inject constructor(
                 items = games.map {
                     RecentGameItem(
                         score = it.score,
-                        day = it.day,
-                        month = it.month,
-                        year = it.year
+                        time = dateConverter.formatTime(it.time)
                     )
                 }
             ))

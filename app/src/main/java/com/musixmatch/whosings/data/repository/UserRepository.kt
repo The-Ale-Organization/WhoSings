@@ -16,6 +16,6 @@ interface UserRepository {
 
     fun getEnrolledUserName(): String?
 
-    fun updateUser(userName: String, score: Int, day: String, month: String, year: String)
+    fun updateUser(userName: String, score: Int, time: Long)
 
 }

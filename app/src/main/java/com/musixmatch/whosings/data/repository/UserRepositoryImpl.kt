@@ -43,7 +43,7 @@ class UserRepositoryImpl @Inject constructor(
         return preferencesManager.getEnrolledUser()
     }
 
-    override fun updateUser(userName: String, score: Int, day: String, month: String, year: String) {
+    override fun updateUser(userName: String, score: Int, time: Long) {
         getUserByName(userName)?.let { user ->
             // Calculate new best score.
             val bestScore = max(score, user.scores?.map { it.score }?.maxOrNull() ?: 0)
@@ -52,10 +52,8 @@ class UserRepositoryImpl @Inject constructor(
             updatedScores.add(
                 ScoreEntity(
                 score = score,
-                day = day,
-                month = month,
-                year = year
-            )
+                time = time
+                )
             )
             val updatedUser = user.copy(
                 username = user.username,

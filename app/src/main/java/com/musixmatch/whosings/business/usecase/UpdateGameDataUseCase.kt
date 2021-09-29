@@ -11,20 +11,13 @@ class UpdateGameDataUseCase @Inject constructor(
 ) {
 
     fun updateData(score: Int) {
-        // Add the noew score to db.
+        // Add the new score to db.
         val userName = userRepository.getEnrolledUserName()
         userName?.let {
-            val cal = Calendar.getInstance(TimeZone.getTimeZone("Europe/Paris"))
-            cal.time = Date()
-            val year = cal[Calendar.YEAR]
-            val month = cal[Calendar.MONTH] + 1
-            val day = cal[Calendar.DAY_OF_MONTH]
             userRepository.updateUser(
                 userName = it,
                 score = score,
-                day = day.toString(),
-                month = month.toString(),
-                year = year.toString()
+                time = Date().time
             )
         }
         // Clear songs: at each new game a new set of songs is used.

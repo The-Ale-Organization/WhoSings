@@ -14,9 +14,7 @@ class GetRecentGamesUseCase @Inject constructor(
         enrolledUserName?.let { u ->
             val userEntity = userRepository.getUserByName(u)
             userEntity?.let { user ->
-                return user.scores?.sortedWith(
-                    compareBy({ it.year }, { it.month }, { it.day })
-                ) ?: listOf()
+                return user.scores?.sortedByDescending { it.time } ?: listOf()
             } ?: throw UserNotFoundException()
         } ?: throw UserNotFoundException()
     }
