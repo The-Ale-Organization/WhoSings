@@ -18,5 +18,4 @@ interface UserRepository {
 
     fun updateUser(userName: String, score: Int, day: String, month: String, year: String)
 
-    fun clearSessionData()
 }

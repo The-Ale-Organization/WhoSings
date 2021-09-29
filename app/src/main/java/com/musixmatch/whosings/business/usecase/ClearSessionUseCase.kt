@@ -1,17 +1,17 @@
 package com.musixmatch.whosings.business.usecase
 
-import com.musixmatch.whosings.data.repository.MusicRepository
-import com.musixmatch.whosings.data.repository.UserRepository
+import com.musixmatch.whosings.data.storage.disk.PreferencesManager
+import com.musixmatch.whosings.data.storage.ram.VolatileMemoryManager
 import javax.inject.Inject
 
 class ClearSessionUseCase @Inject constructor(
-    private val musicRepository: MusicRepository,
-    private val userRepository: UserRepository
+    private val volatileMemoryManager: VolatileMemoryManager,
+    private val preferencesManager: PreferencesManager
 ) {
 
     fun clearSessionData() {
-        musicRepository.clearSessionData()
-        userRepository.clearSessionData()
+        volatileMemoryManager.clear()
+        preferencesManager.clear()
     }
 
 }

@@ -70,7 +70,4 @@ class UserRepositoryImpl @Inject constructor(
         }
     }
 
-    override fun clearSessionData() {
-        preferencesManager.clear()
-    }
 }

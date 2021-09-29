@@ -47,8 +47,4 @@ class MusicRepositoryImpl @Inject constructor(
         volatileMemoryManager.clearSongs()
     }
 
-    override fun clearSessionData() {
-        volatileMemoryManager.clear()
-    }
-
 }

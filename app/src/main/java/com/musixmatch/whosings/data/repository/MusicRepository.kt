@@ -17,6 +17,4 @@ interface MusicRepository {
 
     fun clearSongs()
 
-    fun clearSessionData()
-
 }
