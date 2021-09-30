@@ -8,20 +8,17 @@ import com.musixmatch.whosings.data.storage.ram.VolatileMemoryManager
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
-import javax.inject.Singleton
+import dagger.hilt.android.components.ViewModelComponent
 
 @Module
-@InstallIn(SingletonComponent::class)
+@InstallIn(ViewModelComponent::class)
 object RepositoryModule {
 
-    @Singleton
     @Provides
     fun provideUserRepository(preferencesManager: PreferencesManager, userDao: UserDao): UserRepository {
         return UserRepositoryImpl(preferencesManager, userDao)
     }
 
-    @Singleton
     @Provides
     fun provideMusicRepository(apiHelper: ApiHelper, volatileMemoryManager: VolatileMemoryManager): MusicRepository {
         return MusicRepositoryImpl(

@@ -53,6 +53,9 @@ class QuestionViewModel @Inject constructor(
     // Current score.
     private var score = 0
 
+    /**
+     * Generate questions to be used in the quiz.
+     */
     fun generateQuestions() = viewModelScope.launch(dispatchers.io()) {
         emitState(UiState.Loading)
         try {

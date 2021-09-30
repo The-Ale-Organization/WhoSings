@@ -9,7 +9,7 @@ import com.musixmatch.whosings.data.storage.ram.VolatileMemoryManager
 import timber.log.Timber
 import javax.inject.Inject
 
-class MusicRepositoryImpl @Inject constructor(
+class MusicRepositoryImpl constructor(
     private val apiHelper: ApiHelper,
     private val volatileMemoryManager: VolatileMemoryManager
 ) : MusicRepository {

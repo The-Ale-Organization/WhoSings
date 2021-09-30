@@ -7,7 +7,7 @@ import com.musixmatch.whosings.data.storage.disk.PreferencesManager
 import javax.inject.Inject
 import kotlin.math.max
 
-class UserRepositoryImpl @Inject constructor(
+class UserRepositoryImpl constructor(
     private val preferencesManager: PreferencesManager,
     private val userDao: UserDao
 ) : UserRepository {
