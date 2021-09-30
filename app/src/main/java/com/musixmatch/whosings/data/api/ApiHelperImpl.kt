@@ -12,10 +12,12 @@ class ApiHelperImpl @Inject constructor(
 
     override suspend fun getTracks(
         page: Int,
-        trackRatingOrder: TrackOrder
+        trackRatingOrder: TrackOrder,
+        tracksCount: Int
     ): TrackList {
         val response = apiService.getTracks(
             page = page,
+            pageSize = tracksCount.toString(),
             trackRatingOrder = trackRatingOrder.toString()
         )
         return ResponseParser().parse(response)

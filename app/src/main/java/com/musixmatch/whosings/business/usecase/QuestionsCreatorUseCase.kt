@@ -1,5 +1,7 @@
 package com.musixmatch.whosings.business.usecase
 
+import com.musixmatch.whosings.business.util.QUESTIONS_NUMBER
+import com.musixmatch.whosings.data.exception.InsufficientSongsNumberException
 import com.musixmatch.whosings.data.model.presentation.Question
 import com.musixmatch.whosings.data.repository.MusicRepository
 import javax.inject.Inject
@@ -7,6 +9,15 @@ import javax.inject.Inject
 // Number of options provided to the user.
 const val POSSIBLE_ANSWERS = 3
 
+/**
+ * Generates a list of [Question].
+ *
+ * Each question is about the first line of a song's lyrics.
+ * The user has to guess who is the singer of the song.
+ * [POSSIBLE_ANSWERS] options are provided.
+ * One option is correct.
+ * Wrong options are randomly chosen from a list of famous artists.
+ */
 class QuestionsCreatorUseCase @Inject constructor(
     private val musicRepository: MusicRepository
 ) {
@@ -18,11 +29,30 @@ class QuestionsCreatorUseCase @Inject constructor(
 
         val songList = musicRepository.getSongsWithLyrics()
 
-        return songList.map { song ->
+        // Song that can actually be used in the quiz.
+        val validSongs = songList.filter { song ->
+            // Keep only songs with at least one lyrics line which is not blank.
+            song.lyrics?.split("\n")?.firstOrNull {
+                it.isNotBlank()
+            } != null
+        }
+
+        if (validSongs.count() < QUESTIONS_NUMBER) {
+            // There are not enough songs to create the quiz.
+            throw InsufficientSongsNumberException()
+        }
+
+        return validSongs
+            // Don't create more questions than necessary.
+            .take(QUESTIONS_NUMBER)
+            // Generate a question from each valid song.
+            .map { song ->
             // Randomly choose the correct answer index.
             val correctAnswerIndex = (0..POSSIBLE_ANSWERS).random()
             // Get first line of the lyrics.
-            val firstLyricsLine = song.lyrics?.split("\n")?.first() ?: ""
+            val firstLyricsLine = song.lyrics?.split("\n")?.firstOrNull {
+                it.isNotBlank()
+            } ?: ""
 
             // This list is gonna be filled with all the possible answers to the question.
             val answersList = mutableListOf<String>()
@@ -48,7 +78,8 @@ class QuestionsCreatorUseCase @Inject constructor(
                         // Try picking a random artist from artistList.
                         // If the selected artist is not forbidden, this is the "wrong" artist we're looking for.
                         candidateWrongArtist = artistList.elementAt(
-                            (artistList.indices).random()).artistName
+                            (artistList.indices).random()
+                        ).artistName
                     }
                     forbiddenArtists.add(candidateWrongArtist)
                     answersList.add(index, candidateWrongArtist)

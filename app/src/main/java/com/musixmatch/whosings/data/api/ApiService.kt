@@ -1,6 +1,5 @@
 package com.musixmatch.whosings.data.api
 
-import com.musixmatch.whosings.business.util.PAGE_SIZE
 import com.musixmatch.whosings.data.model.api.ArtistList
 import com.musixmatch.whosings.data.model.api.LyricsWrapper
 import com.musixmatch.whosings.data.model.api.Response
@@ -13,7 +12,7 @@ interface ApiService {
     @GET("track.search")
     suspend fun getTracks(
         @Query("apikey") apiKey: String = ACCESS_TOKEN,
-        @Query("page_size") pageSize: String = PAGE_SIZE,
+        @Query("page_size") pageSize: String = DEFAULT_PAGE_SIZE,
         @Query("page") page: Int,
         @Query("s_track_rating") trackRatingOrder: String
     ): Response<TrackList>
@@ -27,7 +26,7 @@ interface ApiService {
     @GET("chart.artists.get")
     suspend fun getArtists(
         @Query("apikey") apiKey: String = ACCESS_TOKEN,
-        @Query("page_size") pageSize: String = PAGE_SIZE,
+        @Query("page_size") pageSize: String = DEFAULT_PAGE_SIZE,
         @Query("page") page: Int = 1,
         @Query("country") country: String = "it"
     ): Response<ArtistList>

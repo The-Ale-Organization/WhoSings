@@ -6,8 +6,13 @@ package com.musixmatch.whosings.business.util
  *
  */
 
-// Number of songs that are fetched in a page
-const val PAGE_SIZE = "20"
+// Number of questions.
+const val QUESTIONS_NUMBER = 20
+
 
 // Max page index that can be fetched.
-const val MAX_SONGS_PAGE_INDEX = 100
+const val MAX_SONGS_PAGE_INDEX = 70
+
+// Number of tracks to be fetched.
+const val TRACKS_COUNT = 30
+

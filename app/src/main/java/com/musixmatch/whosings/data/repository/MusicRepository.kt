@@ -7,7 +7,7 @@ import com.musixmatch.whosings.data.model.presentation.Song
 
 interface MusicRepository {
 
-    suspend fun fetchSongs(page: Int, trackRatingOrder: TrackOrder): List<Song>
+    suspend fun fetchSongs(page: Int, trackRatingOrder: TrackOrder, tracksCount: Int): List<Song>
 
     suspend fun fetchLyrics(trackId: Int): Lyrics?
 

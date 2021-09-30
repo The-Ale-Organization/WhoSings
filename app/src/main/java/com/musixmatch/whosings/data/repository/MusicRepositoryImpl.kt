@@ -6,6 +6,7 @@ import com.musixmatch.whosings.data.model.api.Artist
 import com.musixmatch.whosings.data.model.api.Lyrics
 import com.musixmatch.whosings.data.model.presentation.Song
 import com.musixmatch.whosings.data.storage.ram.VolatileMemoryManager
+import timber.log.Timber
 import javax.inject.Inject
 
 class MusicRepositoryImpl @Inject constructor(
@@ -13,10 +14,11 @@ class MusicRepositoryImpl @Inject constructor(
     private val volatileMemoryManager: VolatileMemoryManager
 ) : MusicRepository {
 
-    override suspend fun fetchSongs(page: Int, trackRatingOrder: TrackOrder): List<Song> {
+    override suspend fun fetchSongs(page: Int, trackRatingOrder: TrackOrder, tracksCount: Int): List<Song> {
         val response = apiHelper.getTracks(
             page = page,
-            trackRatingOrder = trackRatingOrder
+            trackRatingOrder = trackRatingOrder,
+            tracksCount = tracksCount
         )
         // Save tracks to volatile storage.
         val tracks = response.track?.mapNotNull { it.track }?.toList() ?: listOf()
@@ -26,7 +28,9 @@ class MusicRepositoryImpl @Inject constructor(
     }
 
     override suspend fun fetchLyrics(trackId: Int): Lyrics? {
+        Timber.d("GET LYRICS $trackId --->")
         val response = apiHelper.getLyrics(trackId)
+        Timber.d("GET LYRICS $trackId <---")
         // Save lyrics to volatile storage.
         response.lyrics?.let {
             volatileMemoryManager.addLyrics(it, trackId)

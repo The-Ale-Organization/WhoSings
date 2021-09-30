@@ -8,7 +8,8 @@ interface ApiHelper {
 
     suspend fun getTracks(
         page: Int,
-        trackRatingOrder: TrackOrder
+        trackRatingOrder: TrackOrder,
+        tracksCount: Int
     ): TrackList
 
     suspend fun getLyrics(

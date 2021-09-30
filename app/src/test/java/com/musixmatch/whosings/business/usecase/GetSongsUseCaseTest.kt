@@ -58,7 +58,7 @@ class GetSongsUseCaseTest {
     fun getSongs() = coroutinesTestRule.testDispatcher.runBlockingTest {
         Mockito.`when`(mockMusicRepository.fetchSongs(
             page = anyInt(),
-            trackRatingOrder = MockitoHelper.anyObject()
+            trackRatingOrder = MockitoHelper.anyObject(),
         )).thenReturn(songsWithoutLyrics)
 
         Mockito.`when`(mockMusicRepository.fetchLyrics(
