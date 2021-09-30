@@ -59,6 +59,7 @@ class GetSongsUseCaseTest {
         Mockito.`when`(mockMusicRepository.fetchSongs(
             page = anyInt(),
             trackRatingOrder = MockitoHelper.anyObject(),
+            tracksCount = anyInt()
         )).thenReturn(songsWithoutLyrics)
 
         Mockito.`when`(mockMusicRepository.fetchLyrics(

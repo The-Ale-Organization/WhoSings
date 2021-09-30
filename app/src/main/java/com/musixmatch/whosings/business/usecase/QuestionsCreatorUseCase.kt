@@ -22,7 +22,10 @@ class QuestionsCreatorUseCase @Inject constructor(
     private val musicRepository: MusicRepository
 ) {
 
-    suspend fun createQuestions(): List<Question> {
+    /**
+     * @param questionsCount number of questions to create
+     */
+    suspend fun createQuestions(questionsCount: Int = QUESTIONS_NUMBER): List<Question> {
         // Get top artist from api.
         // This is just for having some artist to use as "wrong answers" in the quiz.
         val artistList = musicRepository.fetchTopArtists()
@@ -37,14 +40,14 @@ class QuestionsCreatorUseCase @Inject constructor(
             } != null
         }
 
-        if (validSongs.count() < QUESTIONS_NUMBER) {
+        if (validSongs.count() < questionsCount) {
             // There are not enough songs to create the quiz.
             throw InsufficientSongsNumberException()
         }
 
         return validSongs
             // Don't create more questions than necessary.
-            .take(QUESTIONS_NUMBER)
+            .take(questionsCount)
             // Generate a question from each valid song.
             .map { song ->
             // Randomly choose the correct answer index.

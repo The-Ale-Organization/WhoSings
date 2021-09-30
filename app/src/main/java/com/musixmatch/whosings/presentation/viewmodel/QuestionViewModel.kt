@@ -7,6 +7,7 @@ import com.musixmatch.whosings.business.usecase.QuestionsCreatorUseCase
 import com.musixmatch.whosings.business.usecase.UpdateGameDataUseCase
 import com.musixmatch.whosings.business.util.DefaultDispatcherProvider
 import com.musixmatch.whosings.business.util.DispatcherProvider
+import com.musixmatch.whosings.business.util.QUESTIONS_NUMBER
 import com.musixmatch.whosings.data.model.presentation.Question
 import com.musixmatch.whosings.data.state.AnswerType
 import com.musixmatch.whosings.data.state.QuestionState
@@ -62,7 +63,7 @@ class QuestionViewModel @Inject constructor(
                 songs.forEach {
                     Timber.d("${it.title} - lyrics: ${it.lyrics?.take(10)}")
                 }
-                questionList = questionsCreatorUseCase.createQuestions()
+                questionList = questionsCreatorUseCase.createQuestions(QUESTIONS_NUMBER)
                 questionList.forEach {
                     Timber.d("Question: Who sings '${it.lyricsLine}'?")
                     Timber.d("Answer 1 (${it.correctAnswerIndex == 0}): ${it.answers[0]}")

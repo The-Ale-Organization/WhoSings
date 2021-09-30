@@ -1,5 +1,6 @@
 package com.musixmatch.whosings.business.usecase
 
+import com.musixmatch.whosings.data.exception.InsufficientSongsNumberException
 import com.musixmatch.whosings.data.model.api.Artist
 import com.musixmatch.whosings.data.model.presentation.Song
 import com.musixmatch.whosings.data.repository.MusicRepository
@@ -8,10 +9,8 @@ import junit.framework.Assert.assertEquals
 import kotlinx.coroutines.test.runBlockingTest
 import org.hamcrest.CoreMatchers.hasItems
 import org.hamcrest.MatcherAssert
-import org.junit.Assert
 import org.junit.Rule
 import org.junit.Test
-import org.mockito.ArgumentMatchers.contains
 import org.mockito.Mockito
 
 class QuestionsCreatorUseCaseTest {
@@ -73,6 +72,21 @@ class QuestionsCreatorUseCaseTest {
         )
     )
 
+    private val manySongs = listOf(
+        Song(
+            trackId = 0,
+            title = "Title 1",
+            artist = "John Lennon",
+            lyrics = "bla bla bla\nagain bla bla bla\nthird time bla bla"
+        ),
+        Song(
+            trackId = 1,
+            title = "We are the champions",
+            artist = "The Queen",
+            lyrics = "I've paid my dues\nTime after time\nI've done my sentence"
+        )
+    )
+
 
     @Test
     fun question_contains_correct_answer() = coroutinesTestRule.testDispatcher.runBlockingTest {
@@ -81,7 +95,7 @@ class QuestionsCreatorUseCaseTest {
         Mockito.`when`(mockMusicRepository.getSongsWithLyrics())
             .thenReturn(songs)
 
-        val questions = useCase.createQuestions()
+        val questions = useCase.createQuestions(2)
 
         assertEquals(questions.size, songs.size)
 
@@ -101,7 +115,7 @@ class QuestionsCreatorUseCaseTest {
         Mockito.`when`(mockMusicRepository.getSongsWithLyrics())
             .thenReturn(songs)
 
-        val questions = useCase.createQuestions()
+        val questions = useCase.createQuestions(2)
         val q1 = questions[0]
         val q2 = questions[1]
 
@@ -116,12 +130,22 @@ class QuestionsCreatorUseCaseTest {
         Mockito.`when`(mockMusicRepository.getSongsWithLyrics())
             .thenReturn(songs)
 
-        val questions = useCase.createQuestions()
+        val questions = useCase.createQuestions(2)
         val q1 = questions[0]
         val q2 = questions[1]
 
         assertEquals(q1.answers.toHashSet().count(), q1.answers.count())
         assertEquals(q2.answers.toHashSet().count(), q2.answers.count())
+    }
+
+    @Test(expected = InsufficientSongsNumberException::class)
+    fun not_enough_songs() = coroutinesTestRule.testDispatcher.runBlockingTest {
+        Mockito.`when`(mockMusicRepository.fetchTopArtists())
+            .thenReturn(artists)
+        Mockito.`when`(mockMusicRepository.getSongsWithLyrics())
+            .thenReturn(songs)
+
+        useCase.createQuestions()
     }
 
     @Test
@@ -131,7 +155,7 @@ class QuestionsCreatorUseCaseTest {
         Mockito.`when`(mockMusicRepository.getSongsWithLyrics())
             .thenReturn(songs)
 
-        val questions = useCase.createQuestions()
+        val questions = useCase.createQuestions(2)
         val q1 = questions[0]
         val q2 = questions[1]
 
