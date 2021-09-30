@@ -2,6 +2,8 @@
 <resources>
 
     <style name="TextAppearance.WhoSings.RoundButton" parent="TextAppearance.MaterialComponents.Button">
+        <item name="android:textColor">@color/white</item>
+
     </style>
 
     <style name="AlertDialog.BodyText" parent="MaterialAlertDialog.MaterialComponents.Body.Text">
