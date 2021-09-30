@@ -72,22 +72,6 @@ class QuestionsCreatorUseCaseTest {
         )
     )
 
-    private val manySongs = listOf(
-        Song(
-            trackId = 0,
-            title = "Title 1",
-            artist = "John Lennon",
-            lyrics = "bla bla bla\nagain bla bla bla\nthird time bla bla"
-        ),
-        Song(
-            trackId = 1,
-            title = "We are the champions",
-            artist = "The Queen",
-            lyrics = "I've paid my dues\nTime after time\nI've done my sentence"
-        )
-    )
-
-
     @Test
     fun question_contains_correct_answer() = coroutinesTestRule.testDispatcher.runBlockingTest {
         Mockito.`when`(mockMusicRepository.fetchTopArtists())
