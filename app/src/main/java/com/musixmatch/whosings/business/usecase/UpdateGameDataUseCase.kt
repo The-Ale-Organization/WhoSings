@@ -1,7 +1,7 @@
 package com.musixmatch.whosings.business.usecase
 
-import com.musixmatch.whosings.data.repository.MusicRepository
-import com.musixmatch.whosings.data.repository.UserRepository
+import com.musixmatch.whosings.common.data.repository.MusicRepository
+import com.musixmatch.whosings.common.data.repository.UserRepository
 import java.util.*
 import javax.inject.Inject
 

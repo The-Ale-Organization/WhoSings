@@ -1,9 +1,9 @@
 package com.musixmatch.whosings.business.usecase
 
-import com.musixmatch.whosings.data.exception.InsufficientSongsNumberException
-import com.musixmatch.whosings.data.model.api.Artist
-import com.musixmatch.whosings.data.model.presentation.Song
-import com.musixmatch.whosings.data.repository.MusicRepository
+import com.musixmatch.whosings.common.exception.InsufficientSongsNumberException
+import com.musixmatch.whosings.common.data.model.api.Artist
+import com.musixmatch.whosings.common.data.model.presentation.Song
+import com.musixmatch.whosings.common.data.repository.MusicRepository
 import com.musixmatch.whosings.shared.CoroutineTestRule
 import junit.framework.Assert.assertEquals
 import kotlinx.coroutines.test.runBlockingTest

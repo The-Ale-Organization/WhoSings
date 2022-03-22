@@ -10,11 +10,11 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.musixmatch.whosings.R
-import com.musixmatch.whosings.data.model.presentation.RecentGameItem
+import com.musixmatch.whosings.common.data.model.presentation.RecentGameItem
 import com.musixmatch.whosings.data.state.UiState
 import com.musixmatch.whosings.data.state.UserHistoryState
 import com.musixmatch.whosings.databinding.FragmentUserHistoryBinding
-import com.musixmatch.whosings.presentation.UiStateListener
+import com.musixmatch.whosings.common.presentation.UiStateListener
 import com.musixmatch.whosings.history.presentation.adapter.UserHistoryAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber

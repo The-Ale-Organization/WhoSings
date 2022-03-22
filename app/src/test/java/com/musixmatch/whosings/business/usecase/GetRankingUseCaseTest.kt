@@ -1,7 +1,7 @@
 package com.musixmatch.whosings.business.usecase
 
-import com.musixmatch.whosings.data.model.entity.UserEntity
-import com.musixmatch.whosings.data.repository.UserRepository
+import com.musixmatch.whosings.common.data.model.entity.UserEntity
+import com.musixmatch.whosings.common.data.repository.UserRepository
 import org.junit.Test
 import org.junit.Assert.*
 import org.mockito.Mockito

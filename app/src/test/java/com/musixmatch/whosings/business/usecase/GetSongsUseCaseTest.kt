@@ -1,8 +1,8 @@
 package com.musixmatch.whosings.business.usecase
 
-import com.musixmatch.whosings.data.model.api.Lyrics
-import com.musixmatch.whosings.data.model.presentation.Song
-import com.musixmatch.whosings.data.repository.MusicRepository
+import com.musixmatch.whosings.common.data.model.api.Lyrics
+import com.musixmatch.whosings.common.data.model.presentation.Song
+import com.musixmatch.whosings.common.data.repository.MusicRepository
 import com.musixmatch.whosings.shared.CoroutineTestRule
 import com.musixmatch.whosings.shared.MockitoHelper
 import kotlinx.coroutines.ExperimentalCoroutinesApi

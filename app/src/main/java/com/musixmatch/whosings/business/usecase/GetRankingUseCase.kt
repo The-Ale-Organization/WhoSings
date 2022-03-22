@@ -1,6 +1,6 @@
 package com.musixmatch.whosings.business.usecase
 
-import com.musixmatch.whosings.data.repository.UserRepository
+import com.musixmatch.whosings.common.data.repository.UserRepository
 import javax.inject.Inject
 
 class GetRankingUseCase @Inject constructor(

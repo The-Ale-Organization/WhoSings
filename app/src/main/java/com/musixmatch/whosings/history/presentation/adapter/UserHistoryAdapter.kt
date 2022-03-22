@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.musixmatch.whosings.data.model.presentation.RecentGameItem
+import com.musixmatch.whosings.common.data.model.presentation.RecentGameItem
 import com.musixmatch.whosings.databinding.RecentGameItemBinding
 
 

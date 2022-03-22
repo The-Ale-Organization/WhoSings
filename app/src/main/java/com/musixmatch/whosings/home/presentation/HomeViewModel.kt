@@ -1,11 +1,11 @@
 package com.musixmatch.whosings.home.presentation
 
 import androidx.lifecycle.*
-import com.musixmatch.whosings.business.error.ErrorHandler
+import com.musixmatch.whosings.common.business.error.ErrorHandler
 import com.musixmatch.whosings.business.usecase.ClearSessionUseCase
 import com.musixmatch.whosings.business.usecase.GetUserInfoUseCase
-import com.musixmatch.whosings.business.util.DefaultDispatcherProvider
-import com.musixmatch.whosings.business.util.DispatcherProvider
+import com.musixmatch.whosings.common.util.DefaultDispatcherProvider
+import com.musixmatch.whosings.common.util.DispatcherProvider
 import com.musixmatch.whosings.data.state.HomeState
 import com.musixmatch.whosings.data.state.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel

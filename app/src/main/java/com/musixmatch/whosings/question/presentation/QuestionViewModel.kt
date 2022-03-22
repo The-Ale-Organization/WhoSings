@@ -1,14 +1,14 @@
 package com.musixmatch.whosings.question.presentation
 
 import androidx.lifecycle.*
-import com.musixmatch.whosings.business.error.ErrorHandler
+import com.musixmatch.whosings.common.business.error.ErrorHandler
 import com.musixmatch.whosings.business.usecase.GetSongsUseCase
 import com.musixmatch.whosings.business.usecase.QuestionsCreatorUseCase
 import com.musixmatch.whosings.business.usecase.UpdateGameDataUseCase
-import com.musixmatch.whosings.business.util.DefaultDispatcherProvider
-import com.musixmatch.whosings.business.util.DispatcherProvider
-import com.musixmatch.whosings.business.util.QUESTIONS_NUMBER
-import com.musixmatch.whosings.data.model.presentation.Question
+import com.musixmatch.whosings.common.util.DefaultDispatcherProvider
+import com.musixmatch.whosings.common.util.DispatcherProvider
+import com.musixmatch.whosings.common.util.QUESTIONS_NUMBER
+import com.musixmatch.whosings.common.data.model.presentation.Question
 import com.musixmatch.whosings.data.state.AnswerType
 import com.musixmatch.whosings.data.state.QuestionState
 import com.musixmatch.whosings.data.state.TimerState

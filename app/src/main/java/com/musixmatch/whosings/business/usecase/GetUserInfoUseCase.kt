@@ -1,8 +1,8 @@
 package com.musixmatch.whosings.business.usecase
 
-import com.musixmatch.whosings.data.exception.UserNotFoundException
-import com.musixmatch.whosings.data.model.presentation.UserInfo
-import com.musixmatch.whosings.data.repository.UserRepository
+import com.musixmatch.whosings.common.exception.UserNotFoundException
+import com.musixmatch.whosings.common.data.model.presentation.UserInfo
+import com.musixmatch.whosings.common.data.repository.UserRepository
 import javax.inject.Inject
 
 class GetUserInfoUseCase @Inject constructor(

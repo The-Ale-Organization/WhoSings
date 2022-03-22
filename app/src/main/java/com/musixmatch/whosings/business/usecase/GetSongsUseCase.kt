@@ -1,10 +1,10 @@
 package com.musixmatch.whosings.business.usecase
 
-import com.musixmatch.whosings.business.util.MAX_SONGS_PAGE_INDEX
-import com.musixmatch.whosings.business.util.TRACKS_COUNT
-import com.musixmatch.whosings.data.api.TrackOrder
-import com.musixmatch.whosings.data.model.presentation.Song
-import com.musixmatch.whosings.data.repository.MusicRepository
+import com.musixmatch.whosings.common.util.MAX_SONGS_PAGE_INDEX
+import com.musixmatch.whosings.common.util.TRACKS_COUNT
+import com.musixmatch.whosings.common.data.api.TrackOrder
+import com.musixmatch.whosings.common.data.model.presentation.Song
+import com.musixmatch.whosings.common.data.repository.MusicRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.async
 import timber.log.Timber

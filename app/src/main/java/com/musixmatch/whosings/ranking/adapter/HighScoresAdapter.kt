@@ -3,7 +3,7 @@ package com.musixmatch.whosings.ranking.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.musixmatch.whosings.data.model.presentation.UserScoreItem
+import com.musixmatch.whosings.common.data.model.presentation.UserScoreItem
 import com.musixmatch.whosings.databinding.RankingListItemBinding
 
 

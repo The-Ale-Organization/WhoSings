@@ -9,12 +9,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.musixmatch.whosings.R
-import com.musixmatch.whosings.data.model.presentation.Question
+import com.musixmatch.whosings.common.data.model.presentation.Question
 import com.musixmatch.whosings.data.state.QuestionState
 import com.musixmatch.whosings.data.state.TimerState
 import com.musixmatch.whosings.data.state.UiState
 import com.musixmatch.whosings.databinding.FragmentQuestionBinding
-import com.musixmatch.whosings.presentation.UiStateListener
+import com.musixmatch.whosings.common.presentation.UiStateListener
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 import java.lang.RuntimeException

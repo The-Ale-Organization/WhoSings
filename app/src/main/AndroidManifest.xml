@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WhoSings">
         <activity
-            android:name=".presentation.activity.QuizActivity"
+            android:name="com.musixmatch.whosings.common.presentation.activity.QuizActivity"
             android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>

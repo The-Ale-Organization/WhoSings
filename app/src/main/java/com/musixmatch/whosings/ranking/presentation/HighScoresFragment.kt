@@ -11,11 +11,11 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.musixmatch.whosings.R
-import com.musixmatch.whosings.data.model.presentation.UserScoreItem
+import com.musixmatch.whosings.common.data.model.presentation.UserScoreItem
 import com.musixmatch.whosings.data.state.RankingState
 import com.musixmatch.whosings.data.state.UiState
 import com.musixmatch.whosings.databinding.FragmentHighScoresBinding
-import com.musixmatch.whosings.presentation.UiStateListener
+import com.musixmatch.whosings.common.presentation.UiStateListener
 import com.musixmatch.whosings.ranking.adapter.HighScoresAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber

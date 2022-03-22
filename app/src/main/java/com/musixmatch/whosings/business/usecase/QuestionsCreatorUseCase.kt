@@ -1,9 +1,9 @@
 package com.musixmatch.whosings.business.usecase
 
-import com.musixmatch.whosings.business.util.QUESTIONS_NUMBER
-import com.musixmatch.whosings.data.exception.InsufficientSongsNumberException
-import com.musixmatch.whosings.data.model.presentation.Question
-import com.musixmatch.whosings.data.repository.MusicRepository
+import com.musixmatch.whosings.common.util.QUESTIONS_NUMBER
+import com.musixmatch.whosings.common.exception.InsufficientSongsNumberException
+import com.musixmatch.whosings.common.data.model.presentation.Question
+import com.musixmatch.whosings.common.data.repository.MusicRepository
 import javax.inject.Inject
 
 // Number of options provided to the user.

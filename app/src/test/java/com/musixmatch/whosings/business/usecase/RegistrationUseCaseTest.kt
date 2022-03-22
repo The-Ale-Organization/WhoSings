@@ -1,13 +1,11 @@
 package com.musixmatch.whosings.business.usecase
 
-import com.musixmatch.whosings.data.exception.AlreadyRegisteredUserException
-import com.musixmatch.whosings.data.exception.EmptyUserException
-import com.musixmatch.whosings.data.exception.UserNotFoundException
-import com.musixmatch.whosings.data.repository.UserRepository
+import com.musixmatch.whosings.common.exception.AlreadyRegisteredUserException
+import com.musixmatch.whosings.common.exception.EmptyUserException
+import com.musixmatch.whosings.common.data.repository.UserRepository
 import com.musixmatch.whosings.shared.MockitoHelper
 import org.junit.Test
 
-import org.junit.Assert.*
 import org.mockito.Mockito
 
 class RegistrationUseCaseTest {

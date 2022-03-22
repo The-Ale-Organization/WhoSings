@@ -3,7 +3,7 @@ package com.musixmatch.whosings.login.presentation
 import com.musixmatch.core.UiEffect
 import com.musixmatch.core.UiEvent
 import com.musixmatch.core.UiState
-import com.musixmatch.whosings.business.error.ErrorHandler
+import com.musixmatch.whosings.common.business.error.ErrorHandler
 
 class LoginContract {
 

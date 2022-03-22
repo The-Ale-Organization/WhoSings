@@ -1,0 +1,39 @@
+package com.musixmatch.whosings.common.data.api
+
+import com.musixmatch.whosings.common.data.model.api.ArtistList
+import com.musixmatch.whosings.common.data.model.api.LyricsWrapper
+import com.musixmatch.whosings.common.data.model.api.Response
+import com.musixmatch.whosings.common.data.model.api.TrackList
+import retrofit2.http.GET
+import retrofit2.http.Query
+
+interface ApiService {
+
+    @GET("track.search")
+    suspend fun getTracks(
+        @Query("apikey") apiKey: String = ACCESS_TOKEN,
+        @Query("page_size") pageSize: String = DEFAULT_PAGE_SIZE,
+        @Query("page") page: Int,
+        @Query("s_track_rating") trackRatingOrder: String
+    ): Response<TrackList>
+
+    @GET("track.lyrics.get")
+    suspend fun getLyrics(
+        @Query("apikey") apiKey: String = ACCESS_TOKEN,
+        @Query("track_id") trackId: Int
+    ): Response<LyricsWrapper>
+
+    @GET("chart.artists.get")
+    suspend fun getArtists(
+        @Query("apikey") apiKey: String = ACCESS_TOKEN,
+        @Query("page_size") pageSize: String = DEFAULT_PAGE_SIZE,
+        @Query("page") page: Int = 1,
+        @Query("country") country: String = "it"
+    ): Response<ArtistList>
+
+}
+
+enum class TrackOrder {
+    desc,
+    asc
+}

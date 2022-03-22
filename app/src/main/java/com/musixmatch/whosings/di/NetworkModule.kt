@@ -1,9 +1,9 @@
 package com.musixmatch.whosings.di
 
 import com.musixmatch.whosings.BuildConfig
-import com.musixmatch.whosings.data.api.ApiHelper
-import com.musixmatch.whosings.data.api.ApiHelperImpl
-import com.musixmatch.whosings.data.api.ApiService
+import com.musixmatch.whosings.common.data.api.ApiHelper
+import com.musixmatch.whosings.common.data.api.ApiHelperImpl
+import com.musixmatch.whosings.common.data.api.ApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

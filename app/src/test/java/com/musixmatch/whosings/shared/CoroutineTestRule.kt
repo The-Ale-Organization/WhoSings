@@ -1,6 +1,6 @@
 package com.musixmatch.whosings.shared
 
-import com.musixmatch.whosings.business.util.DispatcherProvider
+import com.musixmatch.whosings.common.util.DispatcherProvider
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi

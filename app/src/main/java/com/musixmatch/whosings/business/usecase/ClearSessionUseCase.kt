@@ -1,7 +1,7 @@
 package com.musixmatch.whosings.business.usecase
 
-import com.musixmatch.whosings.data.storage.disk.PreferencesManager
-import com.musixmatch.whosings.data.storage.ram.VolatileMemoryManager
+import com.musixmatch.whosings.common.data.storage.disk.PreferencesManager
+import com.musixmatch.whosings.common.data.storage.ram.VolatileMemoryManager
 import javax.inject.Inject
 
 class ClearSessionUseCase @Inject constructor(

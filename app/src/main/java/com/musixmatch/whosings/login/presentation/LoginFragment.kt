@@ -9,9 +9,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.musixmatch.whosings.R
-import com.musixmatch.whosings.business.error.ErrorHandler
+import com.musixmatch.whosings.common.business.error.ErrorHandler
 import com.musixmatch.whosings.databinding.FragmentLoginBinding
-import com.musixmatch.whosings.presentation.UiStateListener
+import com.musixmatch.whosings.common.presentation.UiStateListener
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import java.lang.RuntimeException

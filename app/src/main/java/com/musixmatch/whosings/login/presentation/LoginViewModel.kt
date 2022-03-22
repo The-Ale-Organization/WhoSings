@@ -2,13 +2,13 @@ package com.musixmatch.whosings.login.presentation
 
 import androidx.lifecycle.*
 import com.musixmatch.core.BaseViewModel
-import com.musixmatch.whosings.business.error.ErrorHandler
+import com.musixmatch.whosings.common.business.error.ErrorHandler
 import com.musixmatch.whosings.business.usecase.LoginUseCase
-import com.musixmatch.whosings.business.util.DefaultDispatcherProvider
-import com.musixmatch.whosings.business.util.DispatcherProvider
+import com.musixmatch.whosings.common.util.DefaultDispatcherProvider
+import com.musixmatch.whosings.common.util.DispatcherProvider
 import com.musixmatch.whosings.business.usecase.RegistrationUseCase
-import com.musixmatch.whosings.presentation.navigation.NavigationDispatcher
-import com.musixmatch.whosings.presentation.navigation.Route
+import com.musixmatch.whosings.common.presentation.navigation.NavigationDispatcher
+import com.musixmatch.whosings.common.presentation.navigation.Route
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import timber.log.Timber

@@ -1,7 +1,7 @@
 package com.musixmatch.whosings.di
 
-import com.musixmatch.whosings.business.util.DefaultDispatcherProvider
-import com.musixmatch.whosings.business.util.DispatcherProvider
+import com.musixmatch.whosings.common.util.DefaultDispatcherProvider
+import com.musixmatch.whosings.common.util.DispatcherProvider
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
