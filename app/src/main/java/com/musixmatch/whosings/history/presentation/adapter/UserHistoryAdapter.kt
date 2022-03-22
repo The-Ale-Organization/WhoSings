@@ -1,4 +1,4 @@
-package com.musixmatch.whosings.presentation.adapter
+package com.musixmatch.whosings.history.presentation.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater

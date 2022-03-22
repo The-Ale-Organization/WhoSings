@@ -62,7 +62,7 @@
 
     <fragment
         android:id="@+id/userHistoryFragment"
-        android:name="com.musixmatch.whosings.presentation.fragment.UserHistoryFragment"
+        android:name="com.musixmatch.whosings.history.presentation.UserHistoryFragment"
         android:label="UserHistoryFragment"
         tools:layout="@layout/fragment_user_history"
         >
