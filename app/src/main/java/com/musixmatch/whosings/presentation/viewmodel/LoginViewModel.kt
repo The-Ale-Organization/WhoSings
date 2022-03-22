@@ -1,16 +1,17 @@
 package com.musixmatch.whosings.presentation.viewmodel
 
 import androidx.lifecycle.*
+import com.musixmatch.core.BaseViewModel
 import com.musixmatch.whosings.business.error.ErrorHandler
 import com.musixmatch.whosings.business.usecase.LoginUseCase
 import com.musixmatch.whosings.business.util.DefaultDispatcherProvider
 import com.musixmatch.whosings.business.util.DispatcherProvider
 import com.musixmatch.whosings.business.usecase.RegistrationUseCase
-import com.musixmatch.whosings.data.state.LoginState
-import com.musixmatch.whosings.data.state.UiState
+import com.musixmatch.whosings.presentation.LoginContract
+import com.musixmatch.whosings.presentation.navigation.NavigationDispatcher
+import com.musixmatch.whosings.presentation.navigation.Route
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -19,39 +20,43 @@ class LoginViewModel @Inject constructor(
     private val registrationUseCase: RegistrationUseCase,
     private val loginUseCase: LoginUseCase,
     private val errorHandler: ErrorHandler,
-    private val dispatchers: DispatcherProvider = DefaultDispatcherProvider()
-) : ViewModel() {
+    private val dispatchers: DispatcherProvider = DefaultDispatcherProvider(),
+    private val navigationDispatcher: NavigationDispatcher
+) : BaseViewModel<LoginContract.Event, LoginContract.State, LoginContract.Effect>() {
 
-    // Backing property to avoid state updates from other classes.
-    private val _uiState: MutableLiveData<UiState> = MutableLiveData()
-    // The UI observes this LiveData to get its state updates.
-    val uiState: LiveData<UiState> = _uiState
+    override fun createInitialState() = LoginContract.State()
 
-    fun register(username: String?) = viewModelScope.launch(dispatchers.io()) {
+    override fun handleEvent(event: LoginContract.Event) {
+        when (event) {
+            is LoginContract.Event.RegisterClicked -> register(event.username)
+            is LoginContract.Event.SignInClicked -> login(event.username)
+        }
+    }
+
+    private fun register(username: String?) = viewModelScope.launch(dispatchers.io()) {
         try {
             registrationUseCase.registerUser(username)
-            emitState(LoginState.LoggedIn)
+            navigationDispatcher.navigate(Route.Home)
         } catch (exception: Exception) {
             Timber.e(exception)
             val uiError = errorHandler.handleError(exception)
-            emitState(UiState.Error(uiError))
+            setState { copy(isLoading = false, error = uiError)
+            }
         }
     }
 
-    fun login(username: String?) = viewModelScope.launch(dispatchers.io()) {
+    private fun login(username: String?) = viewModelScope.launch(dispatchers.io()) {
         try {
             loginUseCase.enrollUser(username)
-            emitState(LoginState.LoggedIn)
+            Timber.d("Login on dispatcher ${System.identityHashCode(navigationDispatcher)}")
+            navigationDispatcher.navigate(Route.Home)
         } catch (exception: Exception) {
             Timber.e(exception)
             val uiError = errorHandler.handleError(exception)
-            emitState(UiState.Error(uiError))
+            setState {
+                copy(isLoading = false, error = uiError)
+            }
         }
     }
-
-    private suspend fun emitState(state: UiState) =
-        withContext(dispatchers.main()) {
-            _uiState.value = state
-        }
 
 }
