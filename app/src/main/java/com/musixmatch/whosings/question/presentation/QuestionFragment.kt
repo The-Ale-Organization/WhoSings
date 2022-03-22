@@ -1,4 +1,4 @@
-package com.musixmatch.whosings.presentation.fragment
+package com.musixmatch.whosings.question.presentation
 
 import android.content.Context
 import android.os.Bundle
@@ -15,7 +15,6 @@ import com.musixmatch.whosings.data.state.TimerState
 import com.musixmatch.whosings.data.state.UiState
 import com.musixmatch.whosings.databinding.FragmentQuestionBinding
 import com.musixmatch.whosings.presentation.UiStateListener
-import com.musixmatch.whosings.presentation.viewmodel.QuestionViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 import java.lang.RuntimeException

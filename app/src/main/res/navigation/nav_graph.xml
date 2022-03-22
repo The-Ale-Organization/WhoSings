@@ -38,7 +38,7 @@
 
     <fragment
         android:id="@+id/questionFragment"
-        android:name="com.musixmatch.whosings.presentation.fragment.QuestionFragment"
+        android:name="com.musixmatch.whosings.question.presentation.QuestionFragment"
         android:label="QuestionFragment"
         tools:layout="@layout/fragment_question"
         >
