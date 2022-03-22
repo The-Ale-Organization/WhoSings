@@ -1,4 +1,4 @@
-package com.musixmatch.whosings.business.usecase
+package com.musixmatch.whosings.question.business.usecase
 
 import com.musixmatch.whosings.common.util.MAX_SONGS_PAGE_INDEX
 import com.musixmatch.whosings.common.util.TRACKS_COUNT

@@ -4,6 +4,7 @@ import com.musixmatch.whosings.common.exception.UserNotFoundException
 import com.musixmatch.whosings.common.data.model.entity.UserEntity
 import com.musixmatch.whosings.common.data.model.presentation.UserInfo
 import com.musixmatch.whosings.common.data.repository.UserRepository
+import com.musixmatch.whosings.home.business.usecase.GetUserInfoUseCase
 import com.musixmatch.whosings.shared.MockitoHelper
 import junit.framework.Assert.assertEquals
 import org.junit.Test

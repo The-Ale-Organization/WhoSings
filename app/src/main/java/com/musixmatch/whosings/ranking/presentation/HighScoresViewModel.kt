@@ -2,7 +2,7 @@ package com.musixmatch.whosings.ranking.presentation
 
 import androidx.lifecycle.*
 import com.musixmatch.whosings.common.business.error.ErrorHandler
-import com.musixmatch.whosings.business.usecase.GetRankingUseCase
+import com.musixmatch.whosings.ranking.business.usecase.GetRankingUseCase
 import com.musixmatch.whosings.common.util.DefaultDispatcherProvider
 import com.musixmatch.whosings.common.util.DispatcherProvider
 import com.musixmatch.whosings.common.data.model.presentation.UserScoreItem

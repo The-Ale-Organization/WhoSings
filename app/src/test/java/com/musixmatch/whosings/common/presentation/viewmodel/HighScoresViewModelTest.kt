@@ -2,7 +2,7 @@ package com.musixmatch.whosings.common.presentation.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.musixmatch.whosings.common.business.error.ErrorHandler
-import com.musixmatch.whosings.business.usecase.GetRankingUseCase
+import com.musixmatch.whosings.ranking.business.usecase.GetRankingUseCase
 import com.musixmatch.whosings.common.data.model.presentation.UserScoreItem
 import com.musixmatch.whosings.data.state.RankingState
 import com.musixmatch.whosings.data.state.UiState

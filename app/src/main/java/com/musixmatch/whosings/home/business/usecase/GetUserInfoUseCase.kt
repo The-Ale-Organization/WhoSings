@@ -1,4 +1,4 @@
-package com.musixmatch.whosings.business.usecase
+package com.musixmatch.whosings.home.business.usecase
 
 import com.musixmatch.whosings.common.exception.UserNotFoundException
 import com.musixmatch.whosings.common.data.model.presentation.UserInfo

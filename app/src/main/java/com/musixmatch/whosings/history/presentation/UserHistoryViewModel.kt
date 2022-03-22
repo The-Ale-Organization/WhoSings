@@ -2,7 +2,7 @@ package com.musixmatch.whosings.history.presentation
 
 import androidx.lifecycle.*
 import com.musixmatch.whosings.common.business.error.ErrorHandler
-import com.musixmatch.whosings.business.usecase.GetRecentGamesUseCase
+import com.musixmatch.whosings.history.business.usecase.GetRecentGamesUseCase
 import com.musixmatch.whosings.common.util.DateConverter
 import com.musixmatch.whosings.common.util.DefaultDispatcherProvider
 import com.musixmatch.whosings.common.util.DispatcherProvider

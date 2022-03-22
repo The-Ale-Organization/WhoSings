@@ -2,6 +2,7 @@ package com.musixmatch.whosings.business.usecase
 
 import com.musixmatch.whosings.common.data.repository.MusicRepository
 import com.musixmatch.whosings.common.data.repository.UserRepository
+import com.musixmatch.whosings.question.business.usecase.UpdateGameDataUseCase
 import com.musixmatch.whosings.shared.MockitoHelper
 import org.junit.Test
 

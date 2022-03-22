@@ -1,4 +1,4 @@
-package com.musixmatch.whosings.business.usecase
+package com.musixmatch.whosings.ranking.business.usecase
 
 import com.musixmatch.whosings.common.data.repository.UserRepository
 import javax.inject.Inject

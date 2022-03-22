@@ -1,4 +1,4 @@
-package com.musixmatch.whosings.business.usecase
+package com.musixmatch.whosings.question.business.usecase
 
 import com.musixmatch.whosings.common.data.repository.MusicRepository
 import com.musixmatch.whosings.common.data.repository.UserRepository

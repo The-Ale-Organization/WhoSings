@@ -1,4 +1,4 @@
-package com.musixmatch.whosings.business.usecase
+package com.musixmatch.whosings.question.business.usecase
 
 import com.musixmatch.whosings.common.util.QUESTIONS_NUMBER
 import com.musixmatch.whosings.common.exception.InsufficientSongsNumberException

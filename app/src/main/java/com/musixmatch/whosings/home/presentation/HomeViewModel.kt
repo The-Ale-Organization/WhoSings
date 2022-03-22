@@ -2,8 +2,8 @@ package com.musixmatch.whosings.home.presentation
 
 import androidx.lifecycle.*
 import com.musixmatch.whosings.common.business.error.ErrorHandler
-import com.musixmatch.whosings.business.usecase.ClearSessionUseCase
-import com.musixmatch.whosings.business.usecase.GetUserInfoUseCase
+import com.musixmatch.whosings.home.business.usecase.ClearSessionUseCase
+import com.musixmatch.whosings.home.business.usecase.GetUserInfoUseCase
 import com.musixmatch.whosings.common.util.DefaultDispatcherProvider
 import com.musixmatch.whosings.common.util.DispatcherProvider
 import com.musixmatch.whosings.data.state.HomeState
