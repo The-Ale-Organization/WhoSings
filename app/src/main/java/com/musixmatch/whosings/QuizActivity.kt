@@ -1,4 +1,4 @@
-package com.musixmatch.whosings.common.presentation.activity
+package com.musixmatch.whosings
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,7 +7,7 @@ import androidx.lifecycle.lifecycleScope
 import com.musixmatch.whosings.common.business.error.ErrorHandler
 import com.musixmatch.whosings.databinding.ActivityQuizBinding
 import com.musixmatch.whosings.common.presentation.UiStateListener
-import com.musixmatch.whosings.common.presentation.fragment.ErrorDialog
+import com.musixmatch.whosings.common.presentation.dialog.ErrorDialog
 import com.musixmatch.whosings.login.navigation.LoginNavigator
 import com.musixmatch.whosings.common.presentation.navigation.NavigationDispatcher
 import com.musixmatch.whosings.common.presentation.navigation.Route
