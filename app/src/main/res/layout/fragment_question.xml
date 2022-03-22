@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/lightGray"
     android:padding="12dp"
-    tools:context=".presentation.fragment.HomeFragment">
+    tools:context=".home.presentation.HomeFragment">
 
     <TextView
         android:id="@+id/countdownValueTextView"
