@@ -49,7 +49,7 @@
 
     <fragment
         android:id="@+id/rankingFragment"
-        android:name="com.musixmatch.whosings.presentation.fragment.HighScoresFragment"
+        android:name="com.musixmatch.whosings.ranking.presentation.HighScoresFragment"
         android:label="RankingFragment"
         tools:layout="@layout/fragment_high_scores"
         >

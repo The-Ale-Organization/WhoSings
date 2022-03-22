@@ -6,6 +6,7 @@ import com.musixmatch.whosings.business.usecase.GetRankingUseCase
 import com.musixmatch.whosings.data.model.presentation.UserScoreItem
 import com.musixmatch.whosings.data.state.RankingState
 import com.musixmatch.whosings.data.state.UiState
+import com.musixmatch.whosings.ranking.presentation.HighScoresViewModel
 import com.musixmatch.whosings.shared.CoroutineTestRule
 import com.musixmatch.whosings.shared.MockitoHelper
 import com.musixmatch.whosings.shared.getOrAwaitValue
