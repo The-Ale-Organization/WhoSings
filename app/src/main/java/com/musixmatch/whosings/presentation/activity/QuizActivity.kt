@@ -8,7 +8,7 @@ import com.musixmatch.whosings.business.error.ErrorHandler
 import com.musixmatch.whosings.databinding.ActivityQuizBinding
 import com.musixmatch.whosings.presentation.UiStateListener
 import com.musixmatch.whosings.presentation.fragment.ErrorDialog
-import com.musixmatch.whosings.presentation.navigation.LoginNavigator
+import com.musixmatch.whosings.login.navigation.LoginNavigator
 import com.musixmatch.whosings.presentation.navigation.NavigationDispatcher
 import com.musixmatch.whosings.presentation.navigation.Route
 import dagger.hilt.android.AndroidEntryPoint

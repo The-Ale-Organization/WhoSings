@@ -1,4 +1,4 @@
-package com.musixmatch.whosings.presentation.navigation
+package com.musixmatch.whosings.login.navigation
 
 import androidx.fragment.app.FragmentActivity
 import androidx.navigation.findNavController

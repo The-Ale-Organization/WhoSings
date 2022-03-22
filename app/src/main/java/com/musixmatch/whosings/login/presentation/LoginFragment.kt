@@ -1,4 +1,4 @@
-package com.musixmatch.whosings.presentation.fragment
+package com.musixmatch.whosings.login.presentation
 
 import android.content.Context
 import android.os.Bundle
@@ -11,9 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import com.musixmatch.whosings.R
 import com.musixmatch.whosings.business.error.ErrorHandler
 import com.musixmatch.whosings.databinding.FragmentLoginBinding
-import com.musixmatch.whosings.presentation.LoginContract
 import com.musixmatch.whosings.presentation.UiStateListener
-import com.musixmatch.whosings.presentation.viewmodel.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import java.lang.RuntimeException
@@ -55,13 +53,15 @@ class LoginFragment : Fragment() {
         setupObservers()
 
         binding.signInButton.setOnClickListener {
-            viewModel.setEvent(LoginContract.Event.SignInClicked(
+            viewModel.setEvent(
+                LoginContract.Event.SignInClicked(
                 username = binding.userTextField.editText?.text.toString()
             ))
         }
 
         binding.signUpButton.setOnClickListener {
-            viewModel.setEvent(LoginContract.Event.RegisterClicked(
+            viewModel.setEvent(
+                LoginContract.Event.RegisterClicked(
                 username = binding.userTextField.editText?.text.toString()
             ))
         }
