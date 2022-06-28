@@ -51,14 +51,14 @@ class QuizActivity : AppCompatActivity(), UiStateListener {
         }
 
         lifecycleScope.launchWhenStarted {
-            navDispatcher.flow1.collect {
+            navDispatcher.flowLaunchWhenStarted.collect {
                 Log.d("QuizActivity", "launchWhenStarted collected $it on coroutine ${System.identityHashCode(this)}")
             }
         }
 
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                navDispatcher.flow2.collect {
+                navDispatcher.flowRepeatOnLifecycle.collect {
                     Log.d("QuizActivity", "repeatOnLifecycle collected $it on coroutine ${System.identityHashCode(this)}")
                 }
             }
