@@ -6,6 +6,7 @@ import com.musixmatch.whosings.business.usecase.ClearSessionUseCase
 import com.musixmatch.whosings.business.usecase.GetUserInfoUseCase
 import com.musixmatch.whosings.business.util.DefaultDispatcherProvider
 import com.musixmatch.whosings.business.util.DispatcherProvider
+import com.musixmatch.whosings.business.util.DummyInjectedClassImpl
 import com.musixmatch.whosings.data.state.HomeState
 import com.musixmatch.whosings.data.state.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -19,7 +20,8 @@ class HomeViewModel @Inject constructor(
     private val getUserInfoUseCase: GetUserInfoUseCase,
     private val clearSessionUseCase: ClearSessionUseCase,
     private val errorHandler: ErrorHandler,
-    private val dispatchers: DispatcherProvider = DefaultDispatcherProvider()
+    private val dummyInjectedClassImpl: DummyInjectedClassImpl,
+    private val dispatchers: DispatcherProvider = DefaultDispatcherProvider(),
 ) : ViewModel() {
 
     // Backing property to avoid state updates from other classes.
@@ -31,6 +33,7 @@ class HomeViewModel @Inject constructor(
      * @param currentScore score of the game that just finished. Null if we haven't just finished a game.
      */
     fun retrieveUserInfo(currentScore: Int? = null) = viewModelScope.launch(dispatchers.io()) {
+        dummyInjectedClassImpl.someMethod()
         emitState(UiState.Loading)
         try {
             val userInfo = getUserInfoUseCase.getUserInfo()
