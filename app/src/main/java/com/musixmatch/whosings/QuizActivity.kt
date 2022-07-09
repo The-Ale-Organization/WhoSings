@@ -46,6 +46,8 @@ class QuizActivity : AppCompatActivity(), UiStateListener {
         binding.progressBar.visibility = View.VISIBLE
     }
 
+    // prova
+
     override fun hideProgress() {
         binding.progressBar.visibility = View.GONE
     }
