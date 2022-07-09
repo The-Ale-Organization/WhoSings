@@ -50,6 +50,9 @@ class QuizActivity : AppCompatActivity(), UiStateListener {
         binding.progressBar.visibility = View.GONE
     }
 
+
+    //dododod
+
     override fun showError(uiError: ErrorHandler.UIError) {
         ErrorDialog().show(
             supportFragmentManager, "TAG")
