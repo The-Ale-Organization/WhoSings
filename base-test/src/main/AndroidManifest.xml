@@ -3,7 +3,7 @@
     package="com.whosings.base_test">
 
     <application>
-        <activity android:name="HiltTestActivity" />
+        <activity android:name=".HiltTestActivity" />
     </application>
 
 </manifest>

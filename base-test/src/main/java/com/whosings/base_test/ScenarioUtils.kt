@@ -1,3 +1,5 @@
+package com.whosings.base_test
+
 import android.app.Activity
 import android.content.ComponentName
 import android.content.Intent
@@ -6,10 +8,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.annotation.StyleRes
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
 import androidx.test.core.app.ActivityScenario
 import androidx.test.core.app.ApplicationProvider
-import dagger.hilt.android.AndroidEntryPoint
 
 inline fun <reified A : Activity> launch(
     intent: Intent? = null,
@@ -61,5 +61,3 @@ inline fun <reified T : Fragment> launchFragmentInHiltContainer(
     }
 }
 
-@AndroidEntryPoint
-class HiltTestActivity : FragmentActivity()

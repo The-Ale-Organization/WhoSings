@@ -20,8 +20,6 @@ import com.musixmatch.whosings.presentation.viewmodel.HomeViewModel
 import com.musixmatch.whosings.presentation.viewmodel.QuestionViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
-import java.lang.RuntimeException
-
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -41,8 +39,6 @@ class HomeFragment : Fragment() {
         super.onAttach(context)
         if (context is UiStateListener) {
             mUiStateListener = context
-        } else {
-            throw RuntimeException("${context::javaClass.name} must implement ${UiStateListener::javaClass.name}")
         }
     }
 
