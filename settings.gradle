@@ -1,2 +1,3 @@
 rootProject.name = "WhoSings"
 include ':app'
+include ':base-test'
