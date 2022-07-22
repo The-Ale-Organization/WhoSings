@@ -104,6 +104,7 @@ class QuestionFragment : Fragment() {
                     is UiState.Loading -> {
                         showProgressBar()
                     }
+                    else -> {}
                 }
             }
         }

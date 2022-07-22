@@ -114,6 +114,7 @@ class HomeFragment : Fragment() {
                     is UiState.Loading -> {
                         showProgressBar()
                     }
+                    else -> {}
                 }
             }
         }
@@ -133,6 +134,7 @@ class HomeFragment : Fragment() {
                     is UiState.Loading -> {
                         showProgressBar()
                     }
+                    else -> {}
                 }
             }
         }

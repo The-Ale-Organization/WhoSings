@@ -88,6 +88,7 @@ class HighScoresFragment : Fragment() {
                     is UiState.Loading -> {
                         showProgressBar()
                     }
+                    else -> {}
                 }
             }
         }
