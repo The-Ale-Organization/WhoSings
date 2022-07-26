@@ -87,6 +87,7 @@ class UserHistoryFragment : Fragment() {
                     is UiState.Loading -> {
                         showProgressBar()
                     }
+                    else -> {}
                 }
             }
         }

@@ -105,6 +105,7 @@ class LoginFragment : Fragment() {
                         binding.userTextField.error = null
                         showProgressBar()
                     }
+                    else -> {}
                 }
             }
         }
