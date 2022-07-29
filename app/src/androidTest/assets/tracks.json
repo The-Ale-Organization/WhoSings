@@ -1,0 +1,130 @@
+{
+  "message": {
+    "header": {
+      "status_code": 200,
+      "execute_time": 0.99742007255554,
+      "available": 10000
+    },
+    "body": {
+      "track_list": [
+        {
+          "track": {
+            "track_id": 84294184,
+            "track_name": "Want to Want Me",
+            "track_name_translation_list": [],
+            "track_rating": 91,
+            "commontrack_id": 45020954,
+            "instrumental": 0,
+            "explicit": 0,
+            "has_lyrics": 1,
+            "has_subtitles": 1,
+            "has_richsync": 1,
+            "num_favourite": 37369,
+            "album_id": 20892721,
+            "album_name": "Everything Is 4",
+            "artist_id": 478014,
+            "artist_name": "Jason Derulo",
+            "track_share_url": "https://www.musixmatch.com/lyrics/Jason-Derulo/Want-to-Want-Me?utm_source=application&utm_campaign=api&utm_medium=-%3A1409622142871",
+            "track_edit_url": "https://www.musixmatch.com/lyrics/Jason-Derulo/Want-to-Want-Me/edit?utm_source=application&utm_campaign=api&utm_medium=-%3A1409622142871",
+            "restricted": 0,
+            "updated_time": "2021-12-22T13:10:46Z",
+            "primary_genres": {
+              "music_genre_list": [
+                {
+                  "music_genre": {
+                    "music_genre_id": 1137,
+                    "music_genre_parent_id": 15,
+                    "music_genre_name": "Disco",
+                    "music_genre_name_extended": "R&B/Soul / Disco",
+                    "music_genre_vanity": "R-B-Soul-Disco"
+                  }
+                },
+                {
+                  "music_genre": {
+                    "music_genre_id": 14,
+                    "music_genre_parent_id": 34,
+                    "music_genre_name": "Pop",
+                    "music_genre_name_extended": "Pop",
+                    "music_genre_vanity": "Pop"
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "track": {
+            "track_id": 182469446,
+            "track_name": "Pa' Olvidarme De Ella",
+            "track_name_translation_list": [],
+            "track_rating": 91,
+            "commontrack_id": 99803574,
+            "instrumental": 0,
+            "explicit": 1,
+            "has_lyrics": 1,
+            "has_subtitles": 1,
+            "has_richsync": 1,
+            "num_favourite": 761,
+            "album_id": 34516799,
+            "album_name": "Pa' Olvidarme De Ella - Single",
+            "artist_id": 39908528,
+            "artist_name": "Piso 21 feat. Christian Nodal",
+            "track_share_url": "https://www.musixmatch.com/lyrics/Piso-21-feat-Christian-Nodal/Pa-Olvidarme-De-Ella?utm_source=application&utm_campaign=api&utm_medium=-%3A1409622142871",
+            "track_edit_url": "https://www.musixmatch.com/lyrics/Piso-21-feat-Christian-Nodal/Pa-Olvidarme-De-Ella/edit?utm_source=application&utm_campaign=api&utm_medium=-%3A1409622142871",
+            "restricted": 0,
+            "updated_time": "2020-11-19T16:03:53Z",
+            "primary_genres": {
+              "music_genre_list": [
+                {
+                  "music_genre": {
+                    "music_genre_id": 12,
+                    "music_genre_parent_id": 34,
+                    "music_genre_name": "Latin",
+                    "music_genre_name_extended": "Latin",
+                    "music_genre_vanity": "Latin"
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "track": {
+            "track_id": 196380912,
+            "track_name": "Go Crazy",
+            "track_name_translation_list": [],
+            "track_rating": 91,
+            "commontrack_id": 110400385,
+            "instrumental": 0,
+            "explicit": 1,
+            "has_lyrics": 1,
+            "has_subtitles": 1,
+            "has_richsync": 1,
+            "num_favourite": 1003,
+            "album_id": 37954686,
+            "album_name": "Slime & B",
+            "artist_id": 45250167,
+            "artist_name": "Chris Brown feat. Young Thug",
+            "track_share_url": "https://www.musixmatch.com/lyrics/Chris-Brown-Young-Thug/Go-Crazy?utm_source=application&utm_campaign=api&utm_medium=-%3A1409622142871",
+            "track_edit_url": "https://www.musixmatch.com/lyrics/Chris-Brown-Young-Thug/Go-Crazy/edit?utm_source=application&utm_campaign=api&utm_medium=-%3A1409622142871",
+            "restricted": 0,
+            "updated_time": "2021-01-21T04:20:35Z",
+            "primary_genres": {
+              "music_genre_list": [
+                {
+                  "music_genre": {
+                    "music_genre_id": 1072,
+                    "music_genre_parent_id": 18,
+                    "music_genre_name": "Hardcore Rap",
+                    "music_genre_name_extended": "Hip Hop/Rap / Hardcore Rap",
+                    "music_genre_vanity": "Hip-Hop-Rap-Hardcore-Rap"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "message": {
+    "header": {
+      "status_code": 200,
+      "execute_time": 0.0072181224822998
+    },
+    "body": {
+      "lyrics": {
+        "lyrics_id": 2,
+        "explicit": 0,
+        "lyrics_body": "Second lyrics",
+        "script_tracking_url": "https://tracking.musixmatch.com/t1.0/m_js/e_1/sn_0/l_29082120/su_0/rs_0/tr_3vUCALvD7OvVyJrYg0901LWjfKx8LxPFrAofN_wzeKwFZ5-8sPsaWBdcn9fnJYmLiufYJTlHcdBnyPTIur6gxp6-SATgm5sptaRSGR4PDWmi4naR9r3SC0CXjKyHm6NoHqw3SWjaTgg_yG0adJnyiykdhpBzA7qWsNPu4oxHboCuZRZ8uZ4WG3Vf72hCpCmRoqcXkTy8Qd1UkcsFvstqpRMZdVGvhfriFrWRJ5XvFsgwJRoz_18KG1UdhlXP93KKHuatl3QJMamuYzdm9FDnkCQvQY2I_Hup999hamCM-d7OdtvazPuxjj3Fqg4qIZPVtUTVP92wBAW61TWhTUujYVz_PMYww21uIA2bWQQ27yuScQoaFzrAyoCewxjvZtw9OlO7UfqnwzQHYoSFo_dJ-Gg9OzzyL9mgiSCuQ0U8hwzNwsMTMSFlA4uaJ-tdG3g/",
+        "pixel_tracking_url": "https://tracking.musixmatch.com/t1.0/m_img/e_1/sn_0/l_29082120/su_0/rs_0/tr_3vUCAL0Ab4At0u9xlfdvTKhxqPq89OUCDy3Uo74cx64ELFOtAyNvcoPH9xbzV43V441FvLysOgkEH3Vr6gD74Hn0wBsvwnE4lEHXCSAS85WIBdKiuiCXbW-Xgv41LPUB0KVOs-w2y6n1ZeSK9HyVHx-iUewHCA5tKVMqtCMlR-LkDm_w3Qe1ih3XiRRUwtmuH8ZKQSiixjDs9FNBCPhvj0882wvLyIbXtSxx_CpqAvfNNsf9ohZ2VWXON2RH7A3DLdZqgSfbexbtojaSXr9FjzUPV0E_ns1dGhrEOt25p8ajK8_MIboB36BBR_a4HCRz5mdY5E40A6NGLhq-JenOQ9j8-20JNpa8fRPKPrjZ-oi7zqvcF7PaCr99pFSnvws98HuN0ZOO-opGW5SYe68RQdY1YuEkBhAlvLtVfjovomprqnxdIAxwYVAUtHO5f_8/",
+        "lyrics_copyright": "Lyrics powered by www.musixmatch.com. This Lyrics is NOT for Commercial use and only 30% of the lyrics are returned.",
+        "updated_time": "2022-07-26T01:38:38Z"
+      }
+    }
+  }
+}
