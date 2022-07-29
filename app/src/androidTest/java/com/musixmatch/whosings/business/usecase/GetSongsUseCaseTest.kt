@@ -3,60 +3,60 @@ package com.musixmatch.whosings.business.usecase
 import android.content.Context
 import androidx.test.platform.app.InstrumentationRegistry
 import com.musixmatch.whosings.ResourceHelper
-import com.musixmatch.whosings.data.api.ApiHelperImpl
-import com.musixmatch.whosings.data.api.ApiService
+import com.musixmatch.whosings.data.api.ApiHelper
 import com.musixmatch.whosings.data.repository.MusicRepositoryImpl
-import com.musixmatch.whosings.data.storage.ram.VolatileMemoryManagerImpl
+import com.musixmatch.whosings.data.storage.ram.VolatileMemoryManager
+import dagger.hilt.android.testing.HiltAndroidRule
+import dagger.hilt.android.testing.HiltAndroidTest
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runTest
-import okhttp3.OkHttpClient
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Inject
 
 
 @OptIn(ExperimentalCoroutinesApi::class)
+@HiltAndroidTest
 internal class GetSongsUseCaseUITest {
 
-    private val server = MockWebServer()
     lateinit var context: Context
+
+    @get:Rule
+    var hiltRule = HiltAndroidRule(this)
 
     private lateinit var tracksJson: String
     private lateinit var lyrics1Json: String
     private lateinit var lyrics2Json: String
     private lateinit var lyrics3Json: String
 
-    private val okHttpClient = OkHttpClient
-        .Builder()
-        .build()
+    @Inject
+    lateinit var apiHelper: ApiHelper
 
-    private val mockRetrofit = Retrofit.Builder()
-        .addConverterFactory(GsonConverterFactory.create())
-        .baseUrl(server.url(""))
-        .client(okHttpClient)
-        .build()
+    @Inject
+    lateinit var server: MockWebServer
 
-    private val volatileMemoryManager = VolatileMemoryManagerImpl()
+    @Inject
+    lateinit var volatileMemoryManager: VolatileMemoryManager
 
-    private val getSongsUseCase = GetSongsUseCase(
-        musicRepository = MusicRepositoryImpl(
-            apiHelper = ApiHelperImpl(
-                apiService = mockRetrofit.create(ApiService::class.java)
-            ),
-            volatileMemoryManager = volatileMemoryManager
-        )
-    )
+    lateinit var getSongsUseCase: GetSongsUseCase
 
 
     @Before
     fun setup() {
+        hiltRule.inject()
         context = InstrumentationRegistry.getInstrumentation().context
+        getSongsUseCase = GetSongsUseCase(
+            musicRepository = MusicRepositoryImpl(
+                apiHelper = apiHelper,
+                volatileMemoryManager = volatileMemoryManager
+            )
+        )
         tracksJson = ResourceHelper.loadString(context, "tracks.json")
         lyrics1Json = ResourceHelper.loadString(context, "lyrics1.json")
         lyrics2Json = ResourceHelper.loadString(context, "lyrics2.json")

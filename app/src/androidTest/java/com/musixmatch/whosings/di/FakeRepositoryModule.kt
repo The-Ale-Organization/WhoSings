@@ -1,4 +1,4 @@
-package com.musixmatch.whosings.presentation.fragment
+package com.musixmatch.whosings.di
 
 import com.musixmatch.whosings.data.api.ApiHelper
 import com.musixmatch.whosings.data.model.entity.ScoreEntity
@@ -7,7 +7,6 @@ import com.musixmatch.whosings.data.repository.MusicRepository
 import com.musixmatch.whosings.data.repository.MusicRepositoryImpl
 import com.musixmatch.whosings.data.repository.UserRepository
 import com.musixmatch.whosings.data.storage.ram.VolatileMemoryManager
-import com.musixmatch.whosings.di.RepositoryModule
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.android.components.ViewModelComponent
